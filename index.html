@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Copper Skillet — Southern Comfort Food in Pulaski, VA</title>
+  <meta name="description" content="The Copper Skillet serves Southern comfort food made from scratch in Pulaski, Virginia. Family recipes, fresh local ingredients, dine-in & takeout. Open since 2009.">
+  <meta property="og:title" content="The Copper Skillet — Southern Comfort Food">
+  <meta property="og:description" content="Family recipes. Fresh ingredients. Pulaski's favorite table since 2009.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=1200&auto=format">
+  <meta property="og:type" content="restaurant">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Merriweather:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/nav.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/home.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Restaurant",
+    "name": "The Copper Skillet",
+    "description": "Southern comfort food made from scratch in Pulaski, Virginia",
+    "url": "https://thecopperskillet.com",
+    "telephone": "(540) 555-0421",
+    "email": "hello@thecopperskillet.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "75 Washington Ave",
+      "addressLocality": "Pulaski",
+      "addressRegion": "VA",
+      "postalCode": "24301"
+    },
+    "openingHours": ["Mo-Th 07:00-21:00","Fr-Sa 07:00-22:00","Su 09:00-20:00"],
+    "servesCuisine": "Southern",
+    "priceRange": "$$",
+    "aggregateRating": {"@type": "AggregateRating", "ratingValue": "4.8", "reviewCount": "312"}
+  }
+  </script>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="site-nav" role="navigation" aria-label="Main navigation">
+  <div class="site-nav__inner">
+    <a href="index.html" class="site-nav__logo" aria-label="The Copper Skillet home">
+      <svg class="site-nav__logo-mark" viewBox="0 0 44 44" fill="none" aria-hidden="true">
+        <circle cx="22" cy="22" r="20" fill="currentColor" opacity="0.12"/>
+        <path d="M12 28 C12 28 14 18 22 18 C30 18 32 28 32 28" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+        <path d="M10 28 L34 28" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M22 18 L22 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M18 12 L26 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+        <circle cx="34" cy="32" r="2" fill="currentColor" opacity="0.5"/>
+        <path d="M10 32 Q22 36 34 32" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none" opacity="0.4"/>
+      </svg>
+      <div class="site-nav__logo-text">
+        <span class="site-nav__logo-name">The Copper Skillet</span>
+        <span class="site-nav__logo-tagline">Southern Comfort · Pulaski, VA</span>
+      </div>
+    </a>
+    <ul class="site-nav__links" role="list">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="events.html">Events</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="reservation.html" class="nav-cta">Reserve a Table</a></li>
+    </ul>
+    <div class="site-nav__controls">
+      <button class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode"></button>
+      <button class="mobile-menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobile-nav" role="menu">
+    <a href="index.html">Home</a>
+    <a href="menu.html">Menu</a>
+    <a href="about.html">Our Story</a>
+    <a href="events.html">Events & Specials</a>
+    <a href="blog.html">Blog</a>
+    <a href="contact.html">Contact</a>
+    <a href="reservation.html" class="nav-cta">Reserve a Table</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" aria-label="Hero">
+  <div class="hero__bg">
+    <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=1600&auto=format&q=85" alt="Delicious Southern comfort food spread" loading="eager" fetchpriority="high">
+    <div class="hero__overlay"></div>
+  </div>
+  <div class="hero__content container">
+    <div class="hero__text">
+      <p class="label-text" style="color: var(--copper-light); margin-bottom: var(--space-4);">Pulaski, Virginia Since 2009</p>
+      <h1 class="hero__headline">Southern comfort,<br>made from scratch.</h1>
+      <p class="hero__sub">Family recipes. Fresh ingredients.<br>Pulaski's favorite table since 2009.</p>
+      <div class="hero__ctas">
+        <a href="menu.html" class="btn btn--primary btn--lg">View Our Menu</a>
+        <a href="reservation.html" class="btn btn--ghost btn--lg">Reserve a Table</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero__scroll-indicator" aria-hidden="true">
+    <span></span>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<section class="trust-bar bg-copper" aria-label="Trust indicators">
+  <div class="trust-bar__inner container">
+    <div class="trust-item">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      <span>Open Since 2009</span>
+    </div>
+    <div class="trust-divider" aria-hidden="true">·</div>
+    <div class="trust-item">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 11l-3 3-1.5-1.5M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg>
+      <span>Made From Scratch Daily</span>
+    </div>
+    <div class="trust-divider" aria-hidden="true">·</div>
+    <div class="trust-item">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      <span>Local Virginia Ingredients</span>
+    </div>
+    <div class="trust-divider" aria-hidden="true">·</div>
+    <div class="trust-item">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      <span>Dine-In &amp; Takeout</span>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED DISHES -->
+<section class="featured-dishes section" aria-label="Featured dishes">
+  <div class="container">
+    <div class="section-intro fade-in">
+      <p class="label-text">From Our Kitchen</p>
+      <h2 class="section-heading" style="margin-top: var(--space-2);">Dishes Worth Coming Back For</h2>
+      <p class="section-desc">Every plate tells a story rooted in tradition, crafted with pride.</p>
+    </div>
+    <div class="dishes-grid">
+      <article class="dish-card card fade-in">
+        <div class="dish-card__img img-overlay">
+          <img src="https://images.unsplash.com/photo-1598515213980-6b1f4b89df68?w=600&auto=format&q=80" alt="Crispy Chicken Fried Steak with cream gravy and mashed potatoes" loading="lazy">
+          <span class="dish-card__badge badge badge--copper">House Favorite</span>
+        </div>
+        <div class="dish-card__body">
+          <div class="dish-card__header">
+            <h3 class="dish-card__name">Chicken Fried Steak</h3>
+            <span class="dish-card__price">$18</span>
+          </div>
+          <p class="dish-card__desc">Hand-pounded round steak dredged in seasoned flour, fried golden, and smothered in Bobby Ray's famous peppercorn cream gravy. Served with two sides.</p>
+          <a href="menu.html" class="dish-card__link">See Full Menu →</a>
+        </div>
+      </article>
+      <article class="dish-card card fade-in" style="transition-delay: 0.1s;">
+        <div class="dish-card__img img-overlay">
+          <img src="https://images.unsplash.com/photo-1559058789-672da06263d8?w=600&auto=format&q=80" alt="Creamy Shrimp and Grits with tasso ham and roasted corn" loading="lazy">
+          <span class="dish-card__badge badge badge--green">Chef's Pick</span>
+        </div>
+        <div class="dish-card__body">
+          <div class="dish-card__header">
+            <h3 class="dish-card__name">Shrimp & Grits</h3>
+            <span class="dish-card__price">$22</span>
+          </div>
+          <p class="dish-card__desc">Plump Gulf shrimp sautéed with tasso ham, roasted corn, and green onions over a bed of stone-ground white cheddar grits. A true Low Country classic.</p>
+          <a href="menu.html" class="dish-card__link">See Full Menu →</a>
+        </div>
+      </article>
+      <article class="dish-card card fade-in" style="transition-delay: 0.2s;">
+        <div class="dish-card__img img-overlay">
+          <img src="https://images.unsplash.com/photo-1584278860047-22db9ff82bed?w=600&auto=format&q=80" alt="Fluffy buttermilk biscuits with butter and jam" loading="lazy">
+          <span class="dish-card__badge badge badge--copper">All Day Breakfast</span>
+        </div>
+        <div class="dish-card__body">
+          <div class="dish-card__header">
+            <h3 class="dish-card__name">Biscuits & Gravy</h3>
+            <span class="dish-card__price">$9</span>
+          </div>
+          <p class="dish-card__desc">Two oversized buttermilk biscuits split and covered with scratch-made sausage gravy loaded with crumbled country sausage. Comfort in every bite.</p>
+          <a href="menu.html" class="dish-card__link">See Full Menu →</a>
+        </div>
+      </article>
+    </div>
+    <div class="featured-cta">
+      <a href="menu.html" class="btn btn--primary btn--lg">View the Full Menu</a>
+    </div>
+  </div>
+</section>
+
+<!-- STORY SNIPPET -->
+<section class="story-snippet section bg-offset" aria-label="Our story">
+  <div class="container">
+    <div class="story-snippet__grid">
+      <div class="story-snippet__img fade-in-left">
+        <div class="img-overlay" style="border-radius: var(--radius-2xl); overflow: hidden; aspect-ratio: 4/5;">
+          <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&auto=format&q=80" alt="Chef working in a warm restaurant kitchen" loading="lazy">
+        </div>
+        <div class="story-snippet__img-badge">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <div>
+            <strong>Bobby Ray Harmon</strong>
+            <span>Owner & Head Cook</span>
+          </div>
+        </div>
+      </div>
+      <div class="story-snippet__text fade-in-right">
+        <p class="label-text">Our Story</p>
+        <h2 class="section-heading" style="margin-top: var(--space-3); margin-bottom: var(--space-6); font-family: var(--font-display);">Cooking the way Grandma taught us.</h2>
+        <p>Bobby Ray Harmon grew up in the kitchen — not just any kitchen, but his grandmother Nell's. Every Saturday morning meant cast iron skillets sizzling on a wood-burning stove, the smell of biscuits rising in the oven, and a pot of something long-simmered on the back burner. Those mornings shaped everything.</p>
+        <p style="margin-top: var(--space-4);">After years working the line at restaurants in Roanoke, Bobby Ray came home to Pulaski in 2009 with a dream, three generations of handwritten recipes, and just enough savings to lease a little corner spot on Washington Avenue. Fifteen years later, The Copper Skillet has served over 200,000 meals — and the gravy recipe still hasn't changed.</p>
+        <a href="about.html" class="btn btn--secondary" style="margin-top: var(--space-6);">Read Our Full Story</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOURS & LOCATION -->
+<section class="hours-location section" aria-label="Hours and location">
+  <div class="container">
+    <div class="section-intro fade-in">
+      <p class="label-text">Find Us</p>
+      <h2 class="section-heading" style="margin-top: var(--space-2);">Hours & Location</h2>
+    </div>
+    <div class="hours-location__grid">
+      <div class="hours-card card fade-in-left">
+        <div class="hours-card__header">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          <h3>Hours</h3>
+        </div>
+        <div class="hours-table">
+          <div class="hours-row"><span class="day">Monday – Thursday</span><span class="time">7:00 AM – 9:00 PM</span></div>
+          <div class="hours-row"><span class="day">Friday – Saturday</span><span class="time">7:00 AM – 10:00 PM</span></div>
+          <div class="hours-row"><span class="day">Sunday</span><span class="time">9:00 AM – 8:00 PM</span></div>
+        </div>
+        <div class="hours-note">
+          <span>Breakfast served all day</span>
+        </div>
+        <div style="margin-top: var(--space-6); display: flex; gap: var(--space-3); flex-wrap: wrap;">
+          <a href="reservation.html" class="btn btn--primary">Reserve a Table</a>
+          <a href="contact.html" class="btn btn--secondary">Get Directions</a>
+        </div>
+      </div>
+      <div class="map-placeholder fade-in-right">
+        <div class="map-embed">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3167.4!2d-80.7726!3d37.0529!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzfCsDAzJzEwLjQiTiA4MMKwNDYnMjEuNCJX!5e0!3m2!1sen!2sus!4v1620000000000!5m2!1sen!2sus"
+            width="100%"
+            height="100%"
+            style="border:0;"
+            allowfullscreen
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="The Copper Skillet location map">
+          </iframe>
+        </div>
+        <div class="map-address">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <div>
+            <strong>75 Washington Ave</strong>
+            <span>Pulaski, VA 24301</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GOOGLE REVIEWS MOCKUP -->
+<section class="reviews-section section bg-surface" aria-label="Customer reviews">
+  <div class="container">
+    <div class="reviews-header fade-in">
+      <div class="reviews-rating">
+        <div class="rating-score">4.8</div>
+        <div class="rating-details">
+          <div class="stars" aria-label="4.8 out of 5 stars">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="opacity:0.3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <span class="rating-count">312 Google Reviews</span>
+        </div>
+      </div>
+      <p class="label-text">What Folks Are Saying</p>
+      <h2 class="section-heading" style="margin-top: var(--space-2);">Pulaski's Favorite Table</h2>
+    </div>
+    <div class="reviews-grid">
+      <article class="review-card card fade-in">
+        <div class="review-card__header">
+          <div class="reviewer-avatar">ML</div>
+          <div>
+            <strong>Mary Lou T.</strong>
+            <div class="stars" aria-label="5 stars" style="font-size: 0.75rem;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+          </div>
+          <span class="review-source" aria-label="Google review">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+          </span>
+        </div>
+        <blockquote class="review-text">"The chicken fried steak is absolutely legendary. I've eaten at restaurants all over Virginia and nothing comes close to what Bobby Ray puts out. The gravy is rich, the steak is perfectly crispy, and those mashed potatoes are clouds. We drive 45 minutes from Roanoke just for this meal."</blockquote>
+        <time class="review-date" datetime="2024-03-15">March 2024</time>
+      </article>
+      <article class="review-card card fade-in" style="transition-delay: 0.1s;">
+        <div class="review-card__header">
+          <div class="reviewer-avatar">JD</div>
+          <div>
+            <strong>James D.</strong>
+            <div class="stars" aria-label="5 stars" style="font-size: 0.75rem;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+          </div>
+          <span class="review-source" aria-label="Google review">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+          </span>
+        </div>
+        <blockquote class="review-text">"Best shrimp and grits I've ever had outside of Charleston. The stone-ground grits have that perfect texture — not too thick, not too runny — and the shrimp are always fresh and perfectly seasoned. The tasso ham in there is genius. Came for lunch, stayed for dessert. That banana pudding should be illegal."</blockquote>
+        <time class="review-date" datetime="2024-02-22">February 2024</time>
+      </article>
+      <article class="review-card card fade-in" style="transition-delay: 0.15s;">
+        <div class="review-card__header">
+          <div class="reviewer-avatar">SR</div>
+          <div>
+            <strong>Sandra R.</strong>
+            <div class="stars" aria-label="5 stars" style="font-size: 0.75rem;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+          </div>
+          <span class="review-source" aria-label="Google review">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+          </span>
+        </div>
+        <blockquote class="review-text">"This place feels like home from the moment you walk in. The staff knows your name, the portions are generous, and everything tastes like it was made with love. We've been coming here every Sunday for pot roast since 2015. Bobby Ray really built something special here in Pulaski."</blockquote>
+        <time class="review-date" datetime="2024-01-10">January 2024</time>
+      </article>
+      <article class="review-card card fade-in" style="transition-delay: 0.2s;">
+        <div class="review-card__header">
+          <div class="reviewer-avatar">TW</div>
+          <div>
+            <strong>Tom W.</strong>
+            <div class="stars" aria-label="5 stars" style="font-size: 0.75rem;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+          </div>
+          <span class="review-source" aria-label="Google review">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+          </span>
+        </div>
+        <blockquote class="review-text">"Stopped in on a road trip and ended up staying two hours. The catfish platter was some of the best I've had — cornmeal-crusted, perfectly fried, served with hush puppies and a remoulade that had some real kick to it. The sweet tea was properly sweet. Already planning to come back on the way home."</blockquote>
+        <time class="review-date" datetime="2024-04-02">April 2024</time>
+      </article>
+      <article class="review-card card fade-in" style="transition-delay: 0.25s;">
+        <div class="review-card__header">
+          <div class="reviewer-avatar">KM</div>
+          <div>
+            <strong>Karen M.</strong>
+            <div class="stars" aria-label="5 stars" style="font-size: 0.75rem;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+          </div>
+          <span class="review-source" aria-label="Google review">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+          </span>
+        </div>
+        <blockquote class="review-text">"I brought my whole family here for my dad's birthday — ten of us — and they treated us like royalty. The peach cobbler came out with a candle and everyone sang. The food was incredible, the service was warm and attentive, and the price was more than fair. This is a gem of a restaurant."</blockquote>
+        <time class="review-date" datetime="2023-11-18">November 2023</time>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials section bg-brown" aria-label="Diner testimonials">
+  <div class="container">
+    <p class="label-text" style="color: var(--copper-light); text-align: center;">Straight From the Heart</p>
+    <h2 class="section-heading" style="text-align: center; color: var(--cream); margin-top: var(--space-2); margin-bottom: var(--space-10);">What Our Regulars Say</h2>
+    <div class="testimonials-grid">
+      <blockquote class="testimonial-card fade-in">
+        <svg class="testimonial-quote" width="40" height="40" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg>
+        <p>"I grew up eating at places just like this back in Mississippi. When I moved to Virginia, I thought that kind of cooking was behind me. Then I found The Copper Skillet. Bobby Ray cooks the way my grandmama did, and that means everything."</p>
+        <footer>
+          <strong>— Diane H., Pulaski</strong>
+          <span>Regular since 2011</span>
+        </footer>
+      </blockquote>
+      <blockquote class="testimonial-card fade-in" style="transition-delay: 0.1s;">
+        <svg class="testimonial-quote" width="40" height="40" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg>
+        <p>"Our company holds quarterly team lunches here. Every single time, somebody from the team tries something new and falls in love with it. The collard greens are extraordinary. The mac and cheese is pure comfort. I've tried to recreate both at home — not even close."</p>
+        <footer>
+          <strong>— Marcus B., Radford</strong>
+          <span>Monthly guest</span>
+        </footer>
+      </blockquote>
+      <blockquote class="testimonial-card fade-in" style="transition-delay: 0.2s;">
+        <svg class="testimonial-quote" width="40" height="40" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg>
+        <p>"My daughter chose The Copper Skillet for her wedding rehearsal dinner. Forty guests, every one of them raving about the food all night. Bobby Ray and his team handled everything perfectly — the private dining setup was beautiful and the Sunday Pot Roast made grown men emotional."</p>
+        <footer>
+          <strong>— Carol Anne P., Dublin</strong>
+          <span>Special events guest</span>
+        </footer>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- INSTAGRAM GRID MOCKUP -->
+<section class="instagram-section section" aria-label="Instagram photos">
+  <div class="container">
+    <div class="instagram-header fade-in">
+      <div>
+        <p class="label-text">Follow Along</p>
+        <h2 class="section-heading" style="margin-top: var(--space-2);">@TheCopperSkillet</h2>
+      </div>
+      <a href="#" class="btn btn--secondary" aria-label="Follow us on Instagram">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        Follow Us
+      </a>
+    </div>
+    <div class="instagram-grid">
+      <a href="#" class="instagram-post img-overlay" aria-label="Southern fried chicken">
+        <img src="https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=400&auto=format&q=80" alt="Crispy golden fried chicken" loading="lazy">
+        <div class="instagram-post__hover"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+      </a>
+      <a href="#" class="instagram-post img-overlay" aria-label="Fresh biscuits from the oven">
+        <img src="https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=400&auto=format&q=80" alt="Fresh golden biscuits" loading="lazy">
+        <div class="instagram-post__hover"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+      </a>
+      <a href="#" class="instagram-post img-overlay" aria-label="Homemade peach cobbler">
+        <img src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=400&auto=format&q=80" alt="Warm peach cobbler with ice cream" loading="lazy">
+        <div class="instagram-post__hover"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+      </a>
+      <a href="#" class="instagram-post img-overlay" aria-label="Stack of fluffy pancakes">
+        <img src="https://images.unsplash.com/photo-1528207776546-365bb710ee93?w=400&auto=format&q=80" alt="Fluffy pancake stack with maple syrup" loading="lazy">
+        <div class="instagram-post__hover"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+      </a>
+      <a href="#" class="instagram-post img-overlay" aria-label="Shrimp and grits dish">
+        <img src="https://images.unsplash.com/photo-1559058789-672da06263d8?w=400&auto=format&q=80" alt="Shrimp and creamy grits" loading="lazy">
+        <div class="instagram-post__hover"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+      </a>
+      <a href="#" class="instagram-post img-overlay" aria-label="Cast iron skillet cooking">
+        <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&auto=format&q=80" alt="Chef cooking in cast iron skillet" loading="lazy">
+        <div class="instagram-post__hover"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+      </a>
+      <a href="#" class="instagram-post img-overlay" aria-label="Sunday pot roast special">
+        <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=400&auto=format&q=80" alt="Tender Sunday pot roast" loading="lazy">
+        <div class="instagram-post__hover"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+      </a>
+      <a href="#" class="instagram-post img-overlay" aria-label="Catfish platter Friday special">
+        <img src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=400&auto=format&q=80" alt="Fresh fried catfish platter" loading="lazy">
+        <div class="instagram-post__hover"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+      </a>
+      <a href="#" class="instagram-post img-overlay" aria-label="Warm restaurant dining room">
+        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&auto=format&q=80" alt="Warm restaurant dining room atmosphere" loading="lazy">
+        <div class="instagram-post__hover"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG PREVIEW -->
+<section class="blog-preview section bg-offset" aria-label="Latest news">
+  <div class="container">
+    <div class="section-intro fade-in">
+      <p class="label-text">From the Kitchen</p>
+      <h2 class="section-heading" style="margin-top: var(--space-2);">Latest News & Stories</h2>
+    </div>
+    <div class="blog-preview-grid">
+      <article class="blog-preview-card card fade-in">
+        <div class="blog-preview-card__img img-overlay">
+          <img src="https://images.unsplash.com/photo-1598515213980-6b1f4b89df68?w=600&auto=format&q=80" alt="Chicken fried steak preparation" loading="lazy">
+        </div>
+        <div class="blog-preview-card__body">
+          <span class="badge badge--copper">Our Story</span>
+          <h3><a href="blog-post.html">The Story Behind Our Famous Chicken Fried Steak</a></h3>
+          <p>Bobby Ray's most requested recipe has roots going back to his grandmother's kitchen in rural Giles County. Here's how that dish became our signature.</p>
+          <div class="blog-meta">
+            <time datetime="2024-05-10">May 10, 2024</time>
+            <span>·</span>
+            <span>8 min read</span>
+          </div>
+        </div>
+      </article>
+      <article class="blog-preview-card card fade-in" style="transition-delay: 0.1s;">
+        <div class="blog-preview-card__img img-overlay">
+          <img src="https://images.unsplash.com/photo-1472653525502-fc569e405a74?w=600&auto=format&q=80" alt="Fresh vegetables from local Virginia farm" loading="lazy">
+        </div>
+        <div class="blog-preview-card__body">
+          <span class="badge badge--green">Farm to Table</span>
+          <h3><a href="blog.html">Why We Only Use Local Virginia Ingredients</a></h3>
+          <p>From Giles County farms to New River Valley orchards, our sourcing philosophy is simple: the closer to home, the better it tastes on your plate.</p>
+          <div class="blog-meta">
+            <time datetime="2024-04-22">April 22, 2024</time>
+            <span>·</span>
+            <span>6 min read</span>
+          </div>
+        </div>
+      </article>
+      <article class="blog-preview-card card fade-in" style="transition-delay: 0.2s;">
+        <div class="blog-preview-card__img img-overlay">
+          <img src="https://images.unsplash.com/photo-1584278860047-22db9ff82bed?w=600&auto=format&q=80" alt="Fresh-baked Southern biscuits" loading="lazy">
+        </div>
+        <div class="blog-preview-card__body">
+          <span class="badge badge--copper">Recipes</span>
+          <h3><a href="blog.html">How to Make Perfect Southern Biscuits at Home</a></h3>
+          <p>After 15 years of baking hundreds of biscuits every morning, Bobby Ray shares the five secrets to getting a perfect rise and flaky layers every time.</p>
+          <div class="blog-meta">
+            <time datetime="2024-03-08">March 8, 2024</time>
+            <span>·</span>
+            <span>10 min read</span>
+          </div>
+        </div>
+      </article>
+    </div>
+    <div class="featured-cta">
+      <a href="blog.html" class="btn btn--primary">Read All Stories</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer" role="contentinfo">
+  <div class="site-footer__grid">
+    <!-- Brand -->
+    <div class="footer-brand">
+      <a href="index.html" class="footer-brand__logo">
+        <svg width="36" height="36" viewBox="0 0 44 44" fill="none" aria-hidden="true">
+          <circle cx="22" cy="22" r="20" fill="currentColor" opacity="0.15"/>
+          <path d="M12 28 C12 28 14 18 22 18 C30 18 32 28 32 28" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+          <path d="M10 28 L34 28" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M22 18 L22 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M18 12 L26 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+        <span class="footer-brand__name">The Copper Skillet</span>
+      </a>
+      <p class="footer-brand__desc">Southern comfort food made from scratch, served with pride in Pulaski, Virginia. Family recipes passed down three generations.</p>
+      <div class="footer-social">
+        <a href="#" aria-label="Facebook">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+        <a href="#" aria-label="Instagram">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+        <a href="#" aria-label="Twitter/X">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+      </div>
+      <div class="footer-badge">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Family owned since 2009
+      </div>
+    </div>
+    <!-- Nav -->
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <ul role="list">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="menu.html">Full Menu</a></li>
+        <li><a href="about.html">Our Story</a></li>
+        <li><a href="events.html">Events & Specials</a></li>
+        <li><a href="blog.html">Blog & News</a></li>
+        <li><a href="reservation.html">Reserve a Table</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      </ul>
+    </div>
+    <!-- Hours -->
+    <div class="footer-col">
+      <h4>Hours</h4>
+      <div class="footer-hours">
+        <div class="hours-row"><span class="day">Mon – Thu</span><span class="time">7am – 9pm</span></div>
+        <div class="hours-row"><span class="day">Fri – Sat</span><span class="time">7am – 10pm</span></div>
+        <div class="hours-row"><span class="day">Sunday</span><span class="time">9am – 8pm</span></div>
+      </div>
+      <p style="margin-top: var(--space-3); font-size: var(--text-xs); color: rgba(250,247,240,0.45);">Breakfast served all day. Kitchen closes 30 min before close.</p>
+    </div>
+    <!-- Contact -->
+    <div class="footer-col">
+      <h4>Contact & Location</h4>
+      <div class="footer-contact-info">
+        <a href="tel:+15405550421">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.29h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.4a16 16 0 0 0 5.58 5.58l.97-.97a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/></svg>
+          (540) 555-0421
+        </a>
+        <a href="mailto:hello@thecopperskillet.com">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          hello@thecopperskillet.com
+        </a>
+        <p>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          75 Washington Ave<br>Pulaski, VA 24301
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2024 The Copper Skillet. All rights reserved. · Designed by <a href="https://designholistically.com" target="_blank" rel="noopener">Design Holistically</a></p>
+    <div class="footer-bottom__links">
+      <a href="#">Privacy Policy</a>
+      <a href="admin.html">Admin</a>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js" defer></script>
+</body>
+</html>

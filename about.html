@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Story — The Copper Skillet, Pulaski VA</title>
+  <meta name="description" content="Meet Bobby Ray Harmon and learn the story behind The Copper Skillet — family recipes passed down three generations, opened in Pulaski, VA in 2009.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Merriweather:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/nav.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <style>
+    .page-hero {
+      background: linear-gradient(135deg, var(--brown-deep) 0%, var(--brown-mid) 100%);
+      padding: clamp(var(--space-12), 8vw, var(--space-20)) 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&auto=format&q=60') center/cover;
+      opacity: 0.2;
+    }
+    .page-hero__inner { position: relative; z-index: 1; }
+    .page-hero h1 { font-family: var(--font-display); font-size: var(--text-3xl); color: var(--cream); margin-bottom: var(--space-3); }
+    .page-hero p { font-family: var(--font-heading); font-style: italic; color: rgba(255,251,235,0.75); font-size: var(--text-lg); max-width: 50ch; margin: 0 auto; }
+
+    /* Story sections */
+    .story-section { padding-block: clamp(var(--space-12), 7vw, var(--space-20)); }
+    .story-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-10); align-items: center; }
+    @media (min-width: 768px) { .story-grid { grid-template-columns: 1fr 1fr; gap: var(--space-12); } }
+    .story-img { border-radius: var(--radius-2xl); overflow: hidden; aspect-ratio: 4/5; }
+    .story-img img { width: 100%; height: 100%; object-fit: cover; }
+    .story-text { display: flex; flex-direction: column; gap: var(--space-5); }
+    .story-text p { font-size: var(--text-base); color: var(--color-text-muted); line-height: 1.8; }
+    .story-text h2 { font-family: var(--font-display); font-size: var(--text-2xl); color: var(--color-text); }
+
+    /* Photos grid */
+    .photos-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-3); margin-top: var(--space-8); }
+    @media (min-width: 640px) { .photos-grid { grid-template-columns: repeat(3, 1fr); } }
+    .photos-grid .photo-lg { grid-column: span 2; }
+    .photos-grid img { width: 100%; height: 100%; object-fit: cover; border-radius: var(--radius-xl); aspect-ratio: 1; transition: transform 0.4s ease; }
+    .photos-grid .photo-lg img { aspect-ratio: 16/7; }
+    .photos-grid img:hover { transform: scale(1.02); }
+
+    /* Team */
+    .team-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-6); }
+    @media (min-width: 640px) { .team-grid { grid-template-columns: repeat(3, 1fr); } }
+    .team-card { background: var(--color-surface); border-radius: var(--radius-xl); overflow: hidden; border: 1px solid var(--color-divider); text-align: center; padding-bottom: var(--space-5); }
+    .team-card__img { aspect-ratio: 1; overflow: hidden; }
+    .team-card__img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+    .team-card:hover .team-card__img img { transform: scale(1.04); }
+    .team-card__body { padding: var(--space-5) var(--space-5) 0; }
+    .team-card__name { font-family: var(--font-heading); font-size: var(--text-lg); font-weight: 700; color: var(--color-text); margin-bottom: var(--space-1); }
+    .team-card__role { font-size: var(--text-sm); color: var(--color-primary); font-weight: 600; margin-bottom: var(--space-3); }
+    .team-card__bio { font-size: var(--text-sm); color: var(--color-text-muted); line-height: 1.65; }
+
+    /* Awards */
+    .awards-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-4); }
+    @media (min-width: 640px) { .awards-grid { grid-template-columns: repeat(2, 1fr); } }
+    .award-item { display: flex; align-items: flex-start; gap: var(--space-4); background: var(--color-surface); border-radius: var(--radius-lg); padding: var(--space-5); border: 1px solid var(--color-divider); }
+    .award-icon { width: 48px; height: 48px; border-radius: var(--radius-full); background: rgba(180,83,9,0.1); display: flex; align-items: center; justify-content: center; color: var(--color-primary); flex-shrink: 0; }
+    .award-item h4 { font-family: var(--font-heading); font-weight: 700; color: var(--color-text); margin-bottom: var(--space-1); }
+    .award-item p { font-size: var(--text-sm); color: var(--color-text-muted); line-height: 1.55; }
+
+    /* Values */
+    .values-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-5); }
+    @media (min-width: 640px) { .values-grid { grid-template-columns: repeat(2, 1fr); } }
+    .value-card { background: var(--color-surface); border-radius: var(--radius-xl); padding: var(--space-6); border-left: 4px solid var(--color-primary); }
+    .value-card h4 { font-family: var(--font-heading); font-weight: 700; color: var(--color-text); margin-bottom: var(--space-2); font-size: var(--text-lg); }
+    .value-card p { font-size: var(--text-sm); color: var(--color-text-muted); line-height: 1.65; }
+
+    /* Community */
+    .community-list { display: flex; flex-direction: column; gap: var(--space-3); }
+    .community-item { display: flex; align-items: flex-start; gap: var(--space-4); }
+    .community-item svg { color: var(--color-secondary); flex-shrink: 0; margin-top: 2px; }
+    .community-item p { font-size: var(--text-base); color: var(--color-text-muted); line-height: 1.65; }
+    .community-item strong { color: var(--color-text); }
+  </style>
+</head>
+<body>
+
+<nav class="site-nav" role="navigation" aria-label="Main navigation">
+  <div class="site-nav__inner">
+    <a href="index.html" class="site-nav__logo">
+      <svg class="site-nav__logo-mark" viewBox="0 0 44 44" fill="none" aria-hidden="true"><circle cx="22" cy="22" r="20" fill="currentColor" opacity="0.12"/><path d="M12 28 C12 28 14 18 22 18 C30 18 32 28 32 28" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" fill="none"/><path d="M10 28 L34 28" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><path d="M22 18 L22 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><path d="M18 12 L26 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+      <div class="site-nav__logo-text"><span class="site-nav__logo-name">The Copper Skillet</span><span class="site-nav__logo-tagline">Southern Comfort · Pulaski, VA</span></div>
+    </a>
+    <ul class="site-nav__links" role="list">
+      <li><a href="index.html">Home</a></li><li><a href="menu.html">Menu</a></li><li><a href="about.html" class="active">About</a></li><li><a href="events.html">Events</a></li><li><a href="blog.html">Blog</a></li><li><a href="reservation.html" class="nav-cta">Reserve a Table</a></li>
+    </ul>
+    <div class="site-nav__controls">
+      <button class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode"></button>
+      <button class="mobile-menu-btn" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <div class="mobile-menu" role="menu"><a href="index.html">Home</a><a href="menu.html">Menu</a><a href="about.html">Our Story</a><a href="events.html">Events</a><a href="blog.html">Blog</a><a href="contact.html">Contact</a><a href="reservation.html" class="nav-cta">Reserve a Table</a></div>
+</nav>
+
+<header class="page-hero">
+  <div class="page-hero__inner container">
+    <p class="label-text" style="color:var(--copper-light);margin-bottom:var(--space-3);">Family Recipes · Three Generations</p>
+    <h1>Our Story</h1>
+    <p>"Cooking the way Grandma taught us, for the community that raised us."</p>
+  </div>
+</header>
+
+<main>
+  <!-- Bobby Ray's Story -->
+  <section class="story-section" style="background: var(--color-bg);">
+    <div class="container">
+      <div class="story-grid">
+        <div class="story-img fade-in-left">
+          <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=700&auto=format&q=85" alt="Bobby Ray Harmon in the Copper Skillet kitchen" loading="lazy">
+        </div>
+        <div class="story-text fade-in-right">
+          <p class="label-text">The Beginning</p>
+          <h2>Bobby Ray's Kitchen</h2>
+          <p>Bobby Ray Harmon was born in Giles County, Virginia, two towns over from Pulaski. He grew up in a small farmhouse kitchen where his grandmother Nell Harmon ran things with cast iron, instinct, and a patience that modern cooks rarely possess. Every morning meant biscuits. Every Sunday meant a roast that had been simmering since Saturday night.</p>
+          <p>As a boy, Bobby Ray's job was stirring — the grits, the gravy, the pot of black-eyed peas that took all afternoon. But those hours at Nell's elbow weren't just chores. They were an education. He was absorbing generations of knowledge: when the lard is hot enough to fry, how to know biscuit dough by feel, why collard greens need to cook low and slow with just the right amount of smoked ham hock.</p>
+          <p>At seventeen, Bobby Ray left Pulaski to study at New River Community College and later took a job as a prep cook at a steakhouse in Roanoke. He worked his way up to line cook, then sous chef, learning French techniques and modern plating while never forgetting the food that had shaped him. "You can learn to make a beurre blanc," he says, "but nothing teaches you like watching your grandmother make gravy with her eyes closed."</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Opening the Restaurant -->
+  <section class="story-section" style="background: var(--color-surface-offset);">
+    <div class="container">
+      <div class="story-grid" style="direction: rtl;">
+        <div class="story-img fade-in-right" style="direction: ltr;">
+          <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=700&auto=format&q=85" alt="Warm dining room at The Copper Skillet" loading="lazy">
+        </div>
+        <div class="story-text fade-in-left" style="direction: ltr;">
+          <p class="label-text">Opening Day, 2009</p>
+          <h2>Coming Home to Cook</h2>
+          <p>In 2008, Bobby Ray's grandmother Nell passed away, leaving him her wooden recipe box — three generations of handwritten index cards, some stained with decades of kitchen use. For Bobby Ray, it was both an inheritance and a mandate. "She kept saying, 'Don't let these die with me,'" he recalls. "So I figured the best way to honor her was to feed people with them."</p>
+          <p>Bobby Ray returned to Pulaski in early 2009 with his savings, Nell's recipe box, and a lease on a vacant corner space at 75 Washington Avenue that had once been a hardware store. He stripped it down to the bones, built a bar-height counter along one wall, installed the commercial kitchen himself with help from his cousin Dale, and hung a copper skillet on the wall that Nell had given him years before.</p>
+          <p>The name was never in question. "That skillet is the whole thing," Bobby Ray says. "It's what Southern cooking is — heavy, sturdy, does the work quietly, and makes everything taste better."</p>
+          <p>The Copper Skillet opened on March 14, 2009, a Thursday morning. By 10 AM, they'd run out of biscuits. By noon, they'd run out of chicken fried steak. Bobby Ray called his cousin for help and worked sixteen hours straight. "Best day of my life," he says. "Still is."</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Photo Grid -->
+  <section class="section" style="background: var(--color-bg);">
+    <div class="container">
+      <div class="section-intro fade-in" style="text-align:center; margin-bottom: var(--space-4);">
+        <p class="label-text">Life at The Copper Skillet</p>
+        <h2 class="section-heading" style="margin-top: var(--space-2);">A Peek Behind the Counter</h2>
+      </div>
+      <div class="photos-grid">
+        <div class="photo-lg">
+          <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1000&auto=format&q=80" alt="The warmly lit Copper Skillet dining room" loading="lazy">
+        </div>
+        <div>
+          <img src="https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?w=500&auto=format&q=80" alt="Fresh ingredients prepped in the kitchen" loading="lazy">
+        </div>
+        <div>
+          <img src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=500&auto=format&q=80" alt="Fresh peach cobbler cooling on the counter" loading="lazy">
+        </div>
+        <div>
+          <img src="https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=500&auto=format&q=80" alt="Breakfast plate fresh from the kitchen" loading="lazy">
+        </div>
+        <div>
+          <img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?w=500&auto=format&q=80" alt="Chef plating a beautiful main course" loading="lazy">
+        </div>
+        <div>
+          <img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=500&auto=format&q=80" alt="Cast iron cooking on the line" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section class="section bg-offset">
+    <div class="container">
+      <div class="section-intro fade-in" style="text-align:center; margin-bottom: var(--space-10);">
+        <p class="label-text">The People</p>
+        <h2 class="section-heading" style="margin-top: var(--space-2);">Meet the Team</h2>
+        <p style="color: var(--color-text-muted); margin-top: var(--space-3); max-width: 55ch; margin-inline: auto;">The Copper Skillet is people first. Every dish that leaves our kitchen carries the care of the folks who made it.</p>
+      </div>
+      <div class="team-grid">
+        <div class="team-card fade-in">
+          <div class="team-card__img">
+            <img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=500&auto=format&q=80" alt="Bobby Ray Harmon, owner and head cook at The Copper Skillet" loading="lazy">
+          </div>
+          <div class="team-card__body">
+            <h3 class="team-card__name">Bobby Ray Harmon</h3>
+            <p class="team-card__role">Owner & Head Cook</p>
+            <p class="team-card__bio">Born and raised in Giles County, VA. Trained in Roanoke, came home to Pulaski. Cooks every main dish from memory. Grandmother Nell's recipes are his north star.</p>
+          </div>
+        </div>
+        <div class="team-card fade-in" style="transition-delay:0.1s;">
+          <div class="team-card__img">
+            <img src="https://images.unsplash.com/photo-1607631568010-a87245c0daf8?w=500&auto=format&q=80" alt="Loretta Mae Washington, line cook at The Copper Skillet" loading="lazy">
+          </div>
+          <div class="team-card__body">
+            <h3 class="team-card__name">Loretta Mae Washington</h3>
+            <p class="team-card__role">Line Cook & Pastry</p>
+            <p class="team-card__bio">Loretta has been with the Skillet since month two. She makes every dessert and oversees the breakfast line. Her banana pudding is the stuff of local legend.</p>
+          </div>
+        </div>
+        <div class="team-card fade-in" style="transition-delay:0.2s;">
+          <div class="team-card__img">
+            <img src="https://images.unsplash.com/photo-1559418278-0f20f4d50a3c?w=500&auto=format&q=80" alt="Duane Combs, front of house manager at The Copper Skillet" loading="lazy">
+          </div>
+          <div class="team-card__body">
+            <h3 class="team-card__name">Duane Combs</h3>
+            <p class="team-card__role">Front of House Manager</p>
+            <p class="team-card__bio">Pulaski born and bred. Duane joined the team in 2012 and has been running the dining room ever since. He knows every regular by name, order, and birthday.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Awards & Recognition -->
+  <section class="section" style="background: var(--color-bg);">
+    <div class="container">
+      <div class="section-intro fade-in" style="text-align:center; margin-bottom: var(--space-10);">
+        <p class="label-text">Recognition</p>
+        <h2 class="section-heading" style="margin-top: var(--space-2);">Awards & Features</h2>
+      </div>
+      <div class="awards-grid">
+        <div class="award-item fade-in">
+          <div class="award-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+          </div>
+          <div>
+            <h4>Best of Pulaski 2023</h4>
+            <p>Voted Best Restaurant in Pulaski for the fifth consecutive year by readers of the Southwest Virginia Times.</p>
+          </div>
+        </div>
+        <div class="award-item fade-in" style="transition-delay:0.1s;">
+          <div class="award-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2zm4-14h8m-8 4h8m-8 4h4"/></svg>
+          </div>
+          <div>
+            <h4>Southwest Virginia Times Feature</h4>
+            <p>"Hidden Gems of the New River Valley" — a full-page profile of Bobby Ray and his commitment to locally-sourced, scratch-made cooking.</p>
+          </div>
+        </div>
+        <div class="award-item fade-in" style="transition-delay:0.15s;">
+          <div class="award-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <div>
+            <h4>4.8 Stars — 312 Google Reviews</h4>
+            <p>One of the highest-rated restaurants in Pulaski County. "Consistently excellent" is the most common phrase in our reviews.</p>
+          </div>
+        </div>
+        <div class="award-item fade-in" style="transition-delay:0.2s;">
+          <div class="award-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <div>
+            <h4>Virginia Tourism Feature 2022</h4>
+            <p>Listed among "Virginia's Best Down-Home Restaurants" by the Virginia Tourism Corporation's travel guide.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Values -->
+  <section class="section bg-offset">
+    <div class="container">
+      <div class="section-intro fade-in" style="text-align:center; margin-bottom: var(--space-10);">
+        <p class="label-text">What We Stand For</p>
+        <h2 class="section-heading" style="margin-top: var(--space-2);">Our Philosophy</h2>
+      </div>
+      <div class="values-grid">
+        <div class="value-card fade-in">
+          <h4>From Scratch. Always.</h4>
+          <p>We don't open cans or use mixes. Every sauce, every gravy, every pie crust starts from scratch in our kitchen. It takes longer. It's worth it. Our customers can taste the difference, and that's the only standard we care about.</p>
+        </div>
+        <div class="value-card fade-in" style="transition-delay:0.1s;">
+          <h4>Local First</h4>
+          <p>We source ingredients from farms within 100 miles of Pulaski whenever possible. That means produce from Giles County, beef from Floyd County, and peaches from the Shenandoah Valley. Keeping money local keeps our community strong.</p>
+        </div>
+        <div class="value-card fade-in" style="transition-delay:0.15s;">
+          <h4>Hospitality Without Pretense</h4>
+          <p>We are not a fancy restaurant. We are a neighborhood restaurant with high standards. Everyone who walks through our door deserves to feel at home. We don't rush tables, we don't upsell, and we always refill your sweet tea without being asked.</p>
+        </div>
+        <div class="value-card fade-in" style="transition-delay:0.2s;">
+          <h4>Community Is Family</h4>
+          <p>Pulaski made The Copper Skillet possible. We give back through Little League sponsorships, donations to the Pulaski Food Pantry, and school fundraiser nights where 15% of sales go directly to local classrooms.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Community -->
+  <section class="section" style="background: var(--color-bg);">
+    <div class="container container--default">
+      <div class="section-intro fade-in" style="text-align:center; margin-bottom: var(--space-8);">
+        <p class="label-text">Giving Back</p>
+        <h2 class="section-heading" style="margin-top: var(--space-2);">In the Community</h2>
+      </div>
+      <div class="community-list">
+        <div class="community-item fade-in">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <p><strong>Pulaski Little League Sponsor</strong> — We've sponsored the Harmon's Skillet team in the Pulaski Little League for seven consecutive seasons. Bobby Ray coaches third base on Wednesday evenings.</p>
+        </div>
+        <div class="community-item fade-in" style="transition-delay:0.1s;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          <p><strong>Pulaski Food Pantry</strong> — Every Friday evening, we donate unsold prepared food to the Pulaski County Food Pantry. Since 2015, we've contributed over 40,000 meals to families in need.</p>
+        </div>
+        <div class="community-item fade-in" style="transition-delay:0.15s;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+          <p><strong>School Fundraiser Nights</strong> — Once a month, a local school partners with us for a fundraiser night. We donate 15% of all sales that evening directly to the school's activity fund.</p>
+        </div>
+        <div class="community-item fade-in" style="transition-delay:0.2s;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          <p><strong>Annual Harvest Dinner</strong> — Every November, we host a free Thanksgiving dinner for Pulaski seniors. Open seating, no reservation needed. "Everyone eats well on Thanksgiving." — Bobby Ray</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div style="background: var(--copper); padding: clamp(var(--space-8),5vw,var(--space-12)) 0; text-align:center;">
+  <div class="container">
+    <h2 style="font-family:var(--font-display); color:#fff; margin-bottom:var(--space-3);">Come Join Our Table</h2>
+    <p style="color:rgba(255,255,255,0.85); font-size:var(--text-base); margin-bottom:var(--space-6); max-width:50ch; margin-inline:auto;">Whether it's your first visit or your thousandth, we're glad you're here.</p>
+    <div style="display:flex; gap:var(--space-4); justify-content:center; flex-wrap:wrap;">
+      <a href="reservation.html" class="btn btn--ghost btn--lg">Reserve a Table</a>
+      <a href="menu.html" class="btn" style="background:rgba(255,255,255,0.15); color:#fff; border:2px solid rgba(255,255,255,0.4); padding: var(--space-4) var(--space-8); font-size:var(--text-base); font-weight:600; border-radius:var(--radius-md);">View the Menu</a>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="site-footer__grid">
+    <div class="footer-brand"><a href="index.html" class="footer-brand__logo"><svg width="36" height="36" viewBox="0 0 44 44" fill="none" aria-hidden="true"><circle cx="22" cy="22" r="20" fill="currentColor" opacity="0.15"/><path d="M12 28 C12 28 14 18 22 18 C30 18 32 28 32 28" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" fill="none"/><path d="M10 28 L34 28" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><path d="M22 18 L22 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><path d="M18 12 L26 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg><span class="footer-brand__name">The Copper Skillet</span></a><p class="footer-brand__desc">Southern comfort food made from scratch in Pulaski, Virginia. Family owned since 2009.</p><div class="footer-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Family owned since 2009</div></div>
+    <div class="footer-col"><h4>Navigate</h4><ul role="list"><li><a href="index.html">Home</a></li><li><a href="menu.html">Full Menu</a></li><li><a href="about.html">Our Story</a></li><li><a href="events.html">Events</a></li><li><a href="blog.html">Blog</a></li><li><a href="reservation.html">Reserve</a></li></ul></div>
+    <div class="footer-col"><h4>Hours</h4><div class="footer-hours"><div class="hours-row"><span class="day">Mon – Thu</span><span class="time">7am – 9pm</span></div><div class="hours-row"><span class="day">Fri – Sat</span><span class="time">7am – 10pm</span></div><div class="hours-row"><span class="day">Sunday</span><span class="time">9am – 8pm</span></div></div></div>
+    <div class="footer-col"><h4>Contact</h4><div class="footer-contact-info"><a href="tel:+15405550421"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.29h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.4a16 16 0 0 0 5.58 5.58l.97-.97a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/></svg>(540) 555-0421</a><p><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>75 Washington Ave, Pulaski, VA 24301</p></div></div>
+  </div>
+  <div class="footer-bottom"><p>&copy; 2024 The Copper Skillet · <a href="https://designholistically.com" target="_blank" rel="noopener">Design Holistically</a></p><div class="footer-bottom__links"><a href="#">Privacy</a><a href="admin.html">Admin</a></div></div>
+</footer>
+
+<script src="js/main.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,146 @@
+/* ============================================
+   THE COPPER SKILLET — Design Tokens
+   Southern Comfort Restaurant
+   ============================================ */
+
+:root {
+  /* ---- Brand Colors ---- */
+  --copper: #B45309;
+  --copper-light: #D97706;
+  --copper-dark: #92400E;
+  --brown-deep: #1C0A00;
+  --brown-mid: #44200A;
+  --brown-light: #7C3B1C;
+  --cream: #FFFBEB;
+  --cream-warm: #FAF7F0;
+  --forest: #14532D;
+  --forest-light: #166534;
+  --forest-pale: #DCFCE7;
+
+  /* ---- Surfaces ---- */
+  --color-bg: #FAF7F0;
+  --color-surface: #FFFBEB;
+  --color-surface-2: #FFF8E7;
+  --color-surface-offset: #F5EFE0;
+  --color-surface-offset-2: #EDE5D0;
+  --color-divider: #E0D5BE;
+  --color-border: #D4C8A8;
+
+  /* ---- Text ---- */
+  --color-text: #1C0A00;
+  --color-text-muted: #6B4C30;
+  --color-text-faint: #A0856A;
+  --color-text-inverse: #FAF7F0;
+
+  /* ---- Primary Accent (Copper) ---- */
+  --color-primary: #B45309;
+  --color-primary-hover: #92400E;
+  --color-primary-active: #78350F;
+  --color-primary-highlight: #FDE68A;
+
+  /* ---- Secondary (Forest Green) ---- */
+  --color-secondary: #14532D;
+  --color-secondary-hover: #166534;
+  --color-secondary-active: #15803D;
+
+  /* ---- Type Scale ---- */
+  --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+  --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+  --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  --text-lg: clamp(1.125rem, 1rem + 0.75vw, 1.5rem);
+  --text-xl: clamp(1.5rem, 1.2rem + 1.25vw, 2.25rem);
+  --text-2xl: clamp(2rem, 1.2rem + 2.5vw, 3.5rem);
+  --text-3xl: clamp(2.5rem, 1rem + 4vw, 5rem);
+  --text-hero: clamp(3rem, 0.5rem + 7vw, 7rem);
+
+  /* ---- Spacing ---- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+  --space-32: 8rem;
+
+  /* ---- Radius ---- */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --radius-full: 9999px;
+
+  /* ---- Shadows ---- */
+  --shadow-sm: 0 1px 3px rgba(28, 10, 0, 0.08);
+  --shadow-md: 0 4px 12px rgba(28, 10, 0, 0.10);
+  --shadow-lg: 0 12px 32px rgba(28, 10, 0, 0.14);
+  --shadow-xl: 0 20px 48px rgba(28, 10, 0, 0.18);
+
+  /* ---- Transitions ---- */
+  --transition-fast: 150ms cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-interactive: 220ms cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-slow: 400ms cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* ---- Content Widths ---- */
+  --content-narrow: 640px;
+  --content-default: 960px;
+  --content-wide: 1200px;
+  --content-full: 100%;
+
+  /* ---- Fonts ---- */
+  --font-display: 'Abril Fatface', Georgia, serif;
+  --font-heading: 'Merriweather', Georgia, serif;
+  --font-body: 'Source Sans 3', 'Helvetica Neue', sans-serif;
+}
+
+/* Dark mode */
+[data-theme='dark'] {
+  --color-bg: #120700;
+  --color-surface: #1A0A00;
+  --color-surface-2: #211000;
+  --color-surface-offset: #2A1500;
+  --color-surface-offset-2: #341A00;
+  --color-divider: #3D2000;
+  --color-border: #5A3010;
+  --color-text: #F5EDD8;
+  --color-text-muted: #C4A882;
+  --color-text-faint: #8A6A48;
+  --color-text-inverse: #1C0A00;
+  --color-primary: #E07B20;
+  --color-primary-hover: #F5942A;
+  --color-primary-active: #FFB347;
+  --color-primary-highlight: #5C2D00;
+  --color-secondary: #22C55E;
+  --color-secondary-hover: #4ADE80;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.5);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --color-bg: #120700;
+    --color-surface: #1A0A00;
+    --color-surface-2: #211000;
+    --color-surface-offset: #2A1500;
+    --color-surface-offset-2: #341A00;
+    --color-divider: #3D2000;
+    --color-border: #5A3010;
+    --color-text: #F5EDD8;
+    --color-text-muted: #C4A882;
+    --color-text-faint: #8A6A48;
+    --color-text-inverse: #1C0A00;
+    --color-primary: #E07B20;
+    --color-primary-hover: #F5942A;
+    --color-primary-active: #FFB347;
+    --color-primary-highlight: #5C2D00;
+    --color-secondary: #22C55E;
+    --color-secondary-hover: #4ADE80;
+  }
+}

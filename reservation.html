@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reserve a Table — The Copper Skillet, Pulaski VA</title>
+  <meta name="description" content="Reserve your table at The Copper Skillet in Pulaski, Virginia. Online reservations for dine-in, private parties, and special occasions.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Merriweather:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/nav.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <style>
+    .reservation-layout { display: grid; grid-template-columns: 1fr; gap: var(--space-8); padding-block: clamp(var(--space-10), 6vw, var(--space-16)); }
+    @media (min-width: 900px) { .reservation-layout { grid-template-columns: 1.5fr 1fr; gap: var(--space-12); align-items: start; } }
+    .reservation-form-card { background: var(--color-surface); border-radius: var(--radius-2xl); padding: clamp(var(--space-6), 4vw, var(--space-10)); border: 1px solid var(--color-divider); }
+    .reservation-form-card h1 { font-family: var(--font-display); font-size: var(--text-2xl); margin-bottom: var(--space-2); }
+    .reservation-form-card .form-intro { font-size: var(--text-sm); color: var(--color-text-muted); margin-bottom: var(--space-8); line-height: 1.6; }
+    .form-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-4); }
+    @media (min-width: 500px) { .form-grid { grid-template-columns: repeat(2, 1fr); } }
+    .form-grid .full { grid-column: 1 / -1; }
+    .form-submit { margin-top: var(--space-6); width: 100%; padding: var(--space-4); font-size: var(--text-base); }
+    /* Sidebar */
+    .res-sidebar { display: flex; flex-direction: column; gap: var(--space-5); }
+    .info-card { background: var(--color-surface); border-radius: var(--radius-xl); padding: var(--space-5); border: 1px solid var(--color-divider); }
+    .info-card h3 { font-family: var(--font-heading); font-weight: 700; font-size: var(--text-base); margin-bottom: var(--space-4); color: var(--color-text); display: flex; align-items: center; gap: var(--space-2); }
+    .info-card h3 svg { color: var(--color-primary); }
+    .walkin-note { background: rgba(20,83,45,0.07); border: 1px solid rgba(20,83,45,0.15); border-radius: var(--radius-xl); padding: var(--space-5); }
+    .walkin-note h3 { color: var(--color-secondary); }
+    .walkin-note p { font-size: var(--text-sm); color: var(--color-text-muted); line-height: 1.65; }
+    .hours-detail-row { display: flex; justify-content: space-between; font-size: var(--text-sm); padding: var(--space-2) 0; border-bottom: 1px solid var(--color-divider); }
+    .hours-detail-row:last-child { border-bottom: none; }
+    .hours-detail-row .day { color: var(--color-text-muted); }
+    .hours-detail-row .time { font-weight: 600; color: var(--color-text); }
+    .policy-list { list-style: none; display: flex; flex-direction: column; gap: var(--space-3); }
+    .policy-list li { display: flex; align-items: flex-start; gap: var(--space-2); font-size: var(--text-sm); color: var(--color-text-muted); }
+    .policy-list svg { color: var(--color-primary); flex-shrink: 0; margin-top: 1px; }
+    .page-bg { background: var(--color-bg); }
+  </style>
+</head>
+<body>
+
+<nav class="site-nav" role="navigation" aria-label="Main navigation">
+  <div class="site-nav__inner">
+    <a href="index.html" class="site-nav__logo"><svg class="site-nav__logo-mark" viewBox="0 0 44 44" fill="none" aria-hidden="true"><circle cx="22" cy="22" r="20" fill="currentColor" opacity="0.12"/><path d="M12 28 C12 28 14 18 22 18 C30 18 32 28 32 28" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" fill="none"/><path d="M10 28 L34 28" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><path d="M22 18 L22 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><path d="M18 12 L26 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg><div class="site-nav__logo-text"><span class="site-nav__logo-name">The Copper Skillet</span><span class="site-nav__logo-tagline">Southern Comfort · Pulaski, VA</span></div></a>
+    <ul class="site-nav__links" role="list"><li><a href="index.html">Home</a></li><li><a href="menu.html">Menu</a></li><li><a href="about.html">About</a></li><li><a href="events.html">Events</a></li><li><a href="blog.html">Blog</a></li><li><a href="reservation.html" class="nav-cta active">Reserve a Table</a></li></ul>
+    <div class="site-nav__controls"><button class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode"></button><button class="mobile-menu-btn" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button></div>
+  </div>
+  <div class="mobile-menu" role="menu"><a href="index.html">Home</a><a href="menu.html">Menu</a><a href="about.html">Our Story</a><a href="events.html">Events</a><a href="blog.html">Blog</a><a href="contact.html">Contact</a><a href="reservation.html" class="nav-cta">Reserve a Table</a></div>
+</nav>
+
+<main class="page-bg">
+  <div class="container reservation-layout">
+    <!-- Form -->
+    <div class="fade-in">
+      <div class="reservation-form-card">
+        <h1>Reserve a Table</h1>
+        <p class="form-intro">Fill out the form below and we'll confirm your reservation within 2 hours during business hours. For same-day reservations, please call us at <a href="tel:+15405550421">(540) 555-0421</a>.</p>
+        <form id="reservation-form" novalidate>
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label" for="res-first">First Name *</label>
+              <input type="text" id="res-first" class="form-input" placeholder="Bobby Ray" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="res-last">Last Name *</label>
+              <input type="text" id="res-last" class="form-input" placeholder="Harmon" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="res-phone">Phone Number *</label>
+              <input type="tel" id="res-phone" class="form-input" placeholder="(540) 555-0000" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="res-email">Email Address *</label>
+              <input type="email" id="res-email" class="form-input" placeholder="you@example.com" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="res-party">Party Size *</label>
+              <select id="res-party" class="form-select" required>
+                <option value="">Select size</option>
+                <option>1 guest</option>
+                <option>2 guests</option>
+                <option>3 guests</option>
+                <option>4 guests</option>
+                <option>5 guests</option>
+                <option>6 guests</option>
+                <option>7 guests</option>
+                <option>8 guests</option>
+                <option>9 guests</option>
+                <option>10 guests</option>
+                <option>10+ guests (private dining inquiry)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="res-date">Preferred Date *</label>
+              <input type="date" id="res-date" class="form-input" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="res-time">Preferred Time *</label>
+              <select id="res-time" class="form-select" required>
+                <option value="">Select time</option>
+                <optgroup label="Morning">
+                  <option>7:00 AM</option><option>7:30 AM</option><option>8:00 AM</option><option>8:30 AM</option><option>9:00 AM</option><option>9:30 AM</option><option>10:00 AM</option><option>10:30 AM</option><option>11:00 AM</option><option>11:30 AM</option>
+                </optgroup>
+                <optgroup label="Lunch">
+                  <option>12:00 PM</option><option>12:30 PM</option><option>1:00 PM</option><option>1:30 PM</option><option>2:00 PM</option><option>2:30 PM</option>
+                </optgroup>
+                <optgroup label="Dinner">
+                  <option>5:00 PM</option><option>5:30 PM</option><option>6:00 PM</option><option>6:30 PM</option><option>7:00 PM</option><option>7:30 PM</option><option>8:00 PM</option><option>8:30 PM</option>
+                </optgroup>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="res-occasion">Special Occasion</label>
+              <select id="res-occasion" class="form-select">
+                <option value="">None</option>
+                <option>Birthday</option>
+                <option>Anniversary</option>
+                <option>Date Night</option>
+                <option>Business Meal</option>
+                <option>Other Special Occasion</option>
+              </select>
+            </div>
+            <div class="form-group full">
+              <label class="form-label" for="res-dietary">Dietary Restrictions or Special Requests</label>
+              <textarea id="res-dietary" class="form-textarea" placeholder="Gluten-free, vegetarian, allergies, seating preferences, birthday candles — anything we should know..."></textarea>
+            </div>
+          </div>
+          <button type="submit" class="btn btn--primary form-submit">Request Reservation</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="res-sidebar fade-in" style="transition-delay:0.15s;">
+      <div class="walkin-note">
+        <h3 style="font-family:var(--font-heading); font-weight:700; font-size:var(--text-base); margin-bottom:var(--space-3); display:flex; align-items:center; gap:var(--space-2);">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          Walk-In Policy
+        </h3>
+        <p>Walk-ins are always welcome at The Copper Skillet. We reserve a portion of our seating for walk-in guests every day. Wait times are typically 10–20 minutes during peak hours (7–9am, 12–1pm, 6–7:30pm). For groups of 6 or more, reservations are strongly recommended.</p>
+      </div>
+
+      <div class="info-card">
+        <h3>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          Hours
+        </h3>
+        <div>
+          <div class="hours-detail-row"><span class="day">Monday – Thursday</span><span class="time">7:00 AM – 9:00 PM</span></div>
+          <div class="hours-detail-row"><span class="day">Friday – Saturday</span><span class="time">7:00 AM – 10:00 PM</span></div>
+          <div class="hours-detail-row"><span class="day">Sunday</span><span class="time">9:00 AM – 8:00 PM</span></div>
+        </div>
+        <p style="margin-top:var(--space-3); font-size:var(--text-xs); color:var(--color-text-faint);">Last reservation seating 45 minutes before close.</p>
+      </div>
+
+      <div class="info-card">
+        <h3>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+          Reservation Policies
+        </h3>
+        <ul class="policy-list">
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>We hold tables for 15 minutes past reservation time</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Cancellations appreciated 2+ hours in advance</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Large parties (10+): 72-hour notice for cancellations</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>We'll confirm by email or phone within 2 hours</li>
+        </ul>
+      </div>
+
+      <div class="info-card" style="background: var(--brown-deep); border-color: var(--brown-mid);">
+        <h3 style="color: var(--copper-light); display:flex; align-items:center; gap:var(--space-2);">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          Private Party?
+        </h3>
+        <p style="font-size:var(--text-sm); color:rgba(250,247,240,0.65); margin-bottom:var(--space-4);">For events of 10+ guests or off-site catering, use our dedicated event inquiry form.</p>
+        <a href="events.html#event-inquiry" class="btn btn--ghost" style="font-size:var(--text-sm);">Event Inquiry Form</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="site-footer__grid">
+    <div class="footer-brand"><a href="index.html" class="footer-brand__logo"><svg width="36" height="36" viewBox="0 0 44 44" fill="none" aria-hidden="true"><circle cx="22" cy="22" r="20" fill="currentColor" opacity="0.15"/><path d="M12 28 C12 28 14 18 22 18 C30 18 32 28 32 28" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" fill="none"/><path d="M10 28 L34 28" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><path d="M22 18 L22 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><path d="M18 12 L26 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg><span class="footer-brand__name">The Copper Skillet</span></a><p class="footer-brand__desc">Southern comfort food made from scratch in Pulaski, Virginia. Family owned since 2009.</p></div>
+    <div class="footer-col"><h4>Navigate</h4><ul role="list"><li><a href="index.html">Home</a></li><li><a href="menu.html">Full Menu</a></li><li><a href="about.html">Our Story</a></li><li><a href="events.html">Events</a></li><li><a href="blog.html">Blog</a></li><li><a href="reservation.html">Reserve</a></li></ul></div>
+    <div class="footer-col"><h4>Hours</h4><div class="footer-hours"><div class="hours-row"><span class="day">Mon – Thu</span><span class="time">7am – 9pm</span></div><div class="hours-row"><span class="day">Fri – Sat</span><span class="time">7am – 10pm</span></div><div class="hours-row"><span class="day">Sunday</span><span class="time">9am – 8pm</span></div></div></div>
+    <div class="footer-col"><h4>Contact</h4><div class="footer-contact-info"><a href="tel:+15405550421"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.29h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.4a16 16 0 0 0 5.58 5.58l.97-.97a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/></svg>(540) 555-0421</a><p><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>75 Washington Ave, Pulaski, VA 24301</p></div></div>
+  </div>
+  <div class="footer-bottom"><p>&copy; 2024 The Copper Skillet · <a href="https://designholistically.com" target="_blank" rel="noopener">Design Holistically</a></p></div>
+</footer>
+
+<script src="js/main.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard — The Copper Skillet</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Merriweather:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <style>
+    /* Password gate */
+    #password-gate { position: fixed; inset: 0; background: var(--brown-deep); display: flex; align-items: center; justify-content: center; z-index: 1000; }
+    .gate-card { background: var(--color-surface, #FAF7F0); border-radius: 1.5rem; padding: 2.5rem; max-width: 380px; width: 90%; text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,0.5); }
+    .gate-card svg { color: #B45309; margin: 0 auto var(--space-4); }
+    .gate-card h2 { font-family: 'Abril Fatface', serif; font-size: 1.75rem; margin-bottom: var(--space-2); }
+    .gate-card p { font-size: 0.875rem; color: var(--color-text-muted, #6B4C30); margin-bottom: var(--space-5); }
+    .gate-input { width: 100%; padding: 0.75rem 1rem; border: 2px solid var(--color-border, #D4C8A8); border-radius: 0.5rem; font-size: 1rem; margin-bottom: var(--space-4); }
+    .gate-input:focus { outline: none; border-color: #B45309; }
+    .gate-btn { width: 100%; padding: 0.75rem; background: #B45309; color: #fff; font-weight: 700; border: none; border-radius: 0.5rem; font-size: 1rem; cursor: pointer; transition: background 0.2s; }
+    .gate-btn:hover { background: #92400E; }
+    .gate-error { color: #dc2626; font-size: 0.8rem; margin-top: 0.5rem; display: none; }
+
+    /* Admin shell */
+    #admin-app { display: none; }
+    .admin-header { background: var(--brown-deep, #1C0A00); padding: 0.75rem 1.5rem; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 50; }
+    .admin-header__brand { display: flex; align-items: center; gap: 0.75rem; color: #FAF7F0; font-family: 'Abril Fatface', serif; font-size: 1.1rem; text-decoration: none; }
+    .admin-header__brand svg { color: #D97706; }
+    .admin-badge { background: rgba(180,83,9,0.2); border: 1px solid rgba(180,83,9,0.4); padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #D97706; }
+    .admin-logout { color: rgba(250,247,240,0.5); font-size: 0.8rem; cursor: pointer; background: none; border: none; transition: color 0.2s; }
+    .admin-logout:hover { color: #FAF7F0; }
+
+    /* Layout */
+    .admin-layout { display: grid; grid-template-columns: 220px 1fr; min-height: calc(100dvh - 56px); }
+    @media (max-width: 768px) { .admin-layout { grid-template-columns: 1fr; } }
+    .admin-sidebar { background: var(--color-surface, #FFFBEB); border-right: 1px solid var(--color-divider, #E0D5BE); padding: 1.5rem 0; }
+    @media (max-width: 768px) { .admin-sidebar { display: none; } }
+    .admin-nav-item { display: flex; align-items: center; gap: 0.75rem; padding: 0.625rem 1.25rem; font-size: 0.875rem; font-weight: 600; color: var(--color-text-muted, #6B4C30); cursor: pointer; transition: all 0.15s; border-left: 3px solid transparent; background: none; border-right: none; border-top: none; border-bottom: none; width: 100%; text-align: left; }
+    .admin-nav-item:hover { background: rgba(180,83,9,0.06); color: #B45309; }
+    .admin-nav-item.active { background: rgba(180,83,9,0.08); color: #B45309; border-left-color: #B45309; }
+    .admin-nav-item svg { width: 18px; height: 18px; flex-shrink: 0; }
+    .admin-nav-section { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-text-faint, #A0856A); padding: 1rem 1.25rem 0.5rem; }
+
+    /* Content */
+    .admin-content { padding: 1.5rem; background: var(--color-bg, #FAF7F0); }
+    .admin-panel { display: none; }
+    .admin-panel.active { display: block; }
+
+    /* Stats */
+    .stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-bottom: 1.5rem; }
+    @media (min-width: 640px) { .stats-grid { grid-template-columns: repeat(4, 1fr); } }
+    .stat-card { background: var(--color-surface, #FFFBEB); border-radius: 1rem; padding: 1.25rem; border: 1px solid var(--color-divider, #E0D5BE); }
+    .stat-card__label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-text-muted, #6B4C30); margin-bottom: 0.5rem; }
+    .stat-card__value { font-family: 'Abril Fatface', serif; font-size: 2rem; color: #B45309; line-height: 1; }
+    .stat-card__sub { font-size: 0.75rem; color: var(--color-text-faint, #A0856A); margin-top: 0.25rem; }
+
+    /* Revenue chart */
+    .chart-card { background: var(--color-surface, #FFFBEB); border-radius: 1rem; padding: 1.25rem; border: 1px solid var(--color-divider, #E0D5BE); margin-bottom: 1.5rem; }
+    .chart-card h3 { font-family: 'Merriweather', serif; font-weight: 700; font-size: 0.875rem; margin-bottom: 1rem; }
+    .bar-chart { display: flex; align-items: flex-end; gap: 0.5rem; height: 120px; }
+    .bar-wrap { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 0.25rem; height: 100%; justify-content: flex-end; }
+    .bar { background: linear-gradient(to top, #B45309, #D97706); border-radius: 4px 4px 0 0; width: 100%; transition: opacity 0.2s; min-height: 4px; }
+    .bar:hover { opacity: 0.8; }
+    .bar-label { font-size: 0.65rem; color: var(--color-text-faint, #A0856A); text-align: center; }
+    .bar-val { font-size: 0.65rem; font-weight: 700; color: #B45309; }
+
+    /* Table */
+    .data-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
+    .data-table th { text-align: left; padding: 0.625rem 0.75rem; font-weight: 700; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text-faint, #A0856A); border-bottom: 2px solid var(--color-divider, #E0D5BE); }
+    .data-table td { padding: 0.75rem; border-bottom: 1px solid var(--color-divider, #E0D5BE); color: var(--color-text, #1C0A00); vertical-align: middle; }
+    .data-table tr:last-child td { border-bottom: none; }
+    .data-table tr:hover td { background: rgba(180,83,9,0.03); }
+    .table-wrap { background: var(--color-surface, #FFFBEB); border-radius: 1rem; border: 1px solid var(--color-divider, #E0D5BE); overflow: hidden; margin-bottom: 1.5rem; overflow-x: auto; }
+    .table-title { padding: 0.875rem 1rem; font-family: 'Merriweather', serif; font-weight: 700; font-size: 0.875rem; border-bottom: 1px solid var(--color-divider, #E0D5BE); display: flex; align-items: center; justify-content: space-between; }
+    .status-badge { display: inline-flex; align-items: center; gap: 4px; padding: 0.2rem 0.5rem; border-radius: 9999px; font-size: 0.65rem; font-weight: 700; }
+    .status-confirmed { background: rgba(20,83,45,0.1); color: #14532D; }
+    .status-pending { background: rgba(180,83,9,0.1); color: #B45309; }
+    .status-cancelled { background: rgba(160,0,0,0.08); color: #9f1239; }
+    .edit-btn { background: none; border: 1px solid var(--color-border, #D4C8A8); padding: 0.25rem 0.625rem; border-radius: 0.375rem; font-size: 0.7rem; cursor: pointer; transition: all 0.15s; color: var(--color-text, #1C0A00); }
+    .edit-btn:hover { background: #B45309; color: #fff; border-color: #B45309; }
+
+    /* Specials editor */
+    .specials-editor { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+    @media (min-width: 640px) { .specials-editor { grid-template-columns: repeat(2, 1fr); } }
+    .special-editor-card { background: var(--color-surface, #FFFBEB); border-radius: 0.75rem; padding: 1rem; border: 1px solid var(--color-divider, #E0D5BE); }
+    .special-editor-card h4 { font-family: 'Abril Fatface', serif; font-size: 1rem; color: #B45309; margin-bottom: 0.625rem; }
+    .special-editor-card textarea { width: 100%; height: 80px; padding: 0.5rem; border: 1px solid var(--color-border, #D4C8A8); border-radius: 0.375rem; font-size: 0.8rem; resize: vertical; background: var(--color-bg, #FAF7F0); }
+    .section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; }
+    .section-header h2 { font-family: 'Merriweather', serif; font-size: 1.1rem; font-weight: 700; }
+    .save-btn { background: #B45309; color: #fff; padding: 0.5rem 1.25rem; border-radius: 0.5rem; font-size: 0.8rem; font-weight: 700; cursor: pointer; border: none; transition: background 0.2s; }
+    .save-btn:hover { background: #92400E; }
+    .save-btn.saved { background: #14532D; }
+  </style>
+</head>
+<body>
+
+<!-- Password Gate -->
+<div id="password-gate">
+  <div class="gate-card">
+    <svg width="48" height="48" viewBox="0 0 44 44" fill="none">
+      <circle cx="22" cy="22" r="20" fill="currentColor" opacity="0.12"/>
+      <path d="M12 28 C12 28 14 18 22 18 C30 18 32 28 32 28" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      <path d="M10 28 L34 28" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M22 18 L22 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M18 12 L26 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+    </svg>
+    <h2>Admin Dashboard</h2>
+    <p>The Copper Skillet — Staff Access Only</p>
+    <input type="password" class="gate-input" id="gate-password" placeholder="Enter password" autocomplete="current-password">
+    <div class="gate-error" id="gate-error">Incorrect password. Please try again.</div>
+    <button class="gate-btn" id="gate-submit">Sign In</button>
+  </div>
+</div>
+
+<!-- Admin App -->
+<div id="admin-app">
+  <header class="admin-header">
+    <a href="index.html" class="admin-header__brand">
+      <svg width="28" height="28" viewBox="0 0 44 44" fill="none">
+        <circle cx="22" cy="22" r="20" fill="currentColor" opacity="0.15"/>
+        <path d="M12 28 C12 28 14 18 22 18 C30 18 32 28 32 28" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+        <path d="M10 28 L34 28" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M22 18 L22 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M18 12 L26 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      </svg>
+      The Copper Skillet
+    </a>
+    <div style="display:flex;align-items:center;gap:0.75rem;">
+      <span class="admin-badge">Admin</span>
+      <button class="admin-logout" id="admin-logout">Sign Out</button>
+    </div>
+  </header>
+
+  <div class="admin-layout">
+    <nav class="admin-sidebar">
+      <div class="admin-nav-section">Overview</div>
+      <button class="admin-nav-item active" data-panel="dashboard">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+        Dashboard
+      </button>
+      <div class="admin-nav-section">Operations</div>
+      <button class="admin-nav-item" data-panel="reservations">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        Reservations
+      </button>
+      <button class="admin-nav-item" data-panel="orders">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        Order History
+      </button>
+      <div class="admin-nav-section">Content</div>
+      <button class="admin-nav-item" data-panel="menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+        Menu Manager
+      </button>
+      <button class="admin-nav-item" data-panel="specials">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        Weekly Specials
+      </button>
+      <button class="admin-nav-item" data-panel="blog">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Blog Manager
+      </button>
+    </nav>
+
+    <main class="admin-content">
+      <!-- Dashboard -->
+      <div class="admin-panel active" id="panel-dashboard">
+        <div class="section-header"><h2>Today's Overview</h2><span style="font-size:0.75rem;color:var(--color-text-faint);">Monday, June 29, 2026</span></div>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-card__label">Today's Reservations</div>
+            <div class="stat-card__value">14</div>
+            <div class="stat-card__sub">↑ 3 from yesterday</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card__label">Walk-Ins Today</div>
+            <div class="stat-card__value">22</div>
+            <div class="stat-card__sub">Through 2pm</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card__label">Today's Revenue</div>
+            <div class="stat-card__value">$1,847</div>
+            <div class="stat-card__sub">↑ 12% vs last Mon</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card__label">Avg Check</div>
+            <div class="stat-card__value">$28</div>
+            <div class="stat-card__sub">Per table</div>
+          </div>
+        </div>
+        <div class="chart-card">
+          <h3>Last 7 Days Revenue</h3>
+          <div class="bar-chart">
+            <div class="bar-wrap"><div class="bar-val">$1.4k</div><div class="bar" style="height:72%"></div><div class="bar-label">Mon</div></div>
+            <div class="bar-wrap"><div class="bar-val">$1.6k</div><div class="bar" style="height:80%"></div><div class="bar-label">Tue</div></div>
+            <div class="bar-wrap"><div class="bar-val">$1.5k</div><div class="bar" style="height:75%"></div><div class="bar-label">Wed</div></div>
+            <div class="bar-wrap"><div class="bar-val">$1.8k</div><div class="bar" style="height:90%"></div><div class="bar-label">Thu</div></div>
+            <div class="bar-wrap"><div class="bar-val">$2.4k</div><div class="bar" style="height:100%"></div><div class="bar-label">Fri</div></div>
+            <div class="bar-wrap"><div class="bar-val">$2.2k</div><div class="bar" style="height:92%"></div><div class="bar-label">Sat</div></div>
+            <div class="bar-wrap"><div class="bar-val">$1.9k</div><div class="bar" style="height:82%"></div><div class="bar-label">Sun</div></div>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <div class="table-title">Today's Reservations <span style="font-size:0.75rem;font-weight:400;color:var(--color-text-faint);">14 total</span></div>
+          <table class="data-table">
+            <thead><tr><th>Time</th><th>Name</th><th>Party</th><th>Occasion</th><th>Status</th><th>Notes</th></tr></thead>
+            <tbody>
+              <tr><td>7:30 AM</td><td>Smith, T.</td><td>2</td><td>—</td><td><span class="status-badge status-confirmed">Confirmed</span></td><td>Window seat requested</td></tr>
+              <tr><td>8:00 AM</td><td>Johnson, M.</td><td>4</td><td>Birthday</td><td><span class="status-badge status-confirmed">Confirmed</span></td><td>Birthday cake — call ahead</td></tr>
+              <tr><td>9:15 AM</td><td>Williams, S.</td><td>3</td><td>—</td><td><span class="status-badge status-pending">Pending</span></td><td></td></tr>
+              <tr><td>11:30 AM</td><td>Davis, K.</td><td>6</td><td>—</td><td><span class="status-badge status-confirmed">Confirmed</span></td><td>Corporate lunch, split check</td></tr>
+              <tr><td>12:00 PM</td><td>Miller, A.</td><td>2</td><td>Anniversary</td><td><span class="status-badge status-confirmed">Confirmed</span></td><td>Quiet table, candles please</td></tr>
+              <tr><td>12:30 PM</td><td>Wilson, R.</td><td>5</td><td>—</td><td><span class="status-badge status-confirmed">Confirmed</span></td><td>One vegetarian</td></tr>
+              <tr><td>1:00 PM</td><td>Moore, C.</td><td>2</td><td>—</td><td><span class="status-badge status-cancelled">Cancelled</span></td><td>Called to cancel at 10am</td></tr>
+              <tr><td>5:30 PM</td><td>Taylor, B.</td><td>4</td><td>—</td><td><span class="status-badge status-confirmed">Confirmed</span></td><td></td></tr>
+              <tr><td>6:00 PM</td><td>Anderson, J.</td><td>8</td><td>Birthday</td><td><span class="status-badge status-confirmed">Confirmed</span></td><td>Private room reserved</td></tr>
+              <tr><td>6:30 PM</td><td>Thomas, L.</td><td>2</td><td>Date Night</td><td><span class="status-badge status-confirmed">Confirmed</span></td><td>Flowers requested</td></tr>
+              <tr><td>7:00 PM</td><td>Garcia, M.</td><td>4</td><td>—</td><td><span class="status-badge status-pending">Pending</span></td><td>Waiting on confirmation</td></tr>
+              <tr><td>7:30 PM</td><td>Martinez, R.</td><td>3</td><td>—</td><td><span class="status-badge status-confirmed">Confirmed</span></td><td></td></tr>
+              <tr><td>8:00 PM</td><td>Robinson, T.</td><td>2</td><td>—</td><td><span class="status-badge status-confirmed">Confirmed</span></td><td>Allergy: shellfish</td></tr>
+              <tr><td>8:30 PM</td><td>Clark, D.</td><td>4</td><td>—</td><td><span class="status-badge status-confirmed">Confirmed</span></td><td></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Reservations -->
+      <div class="admin-panel" id="panel-reservations">
+        <div class="section-header"><h2>Reservations</h2><button class="save-btn">+ Add Reservation</button></div>
+        <div class="table-wrap">
+          <div class="table-title">All Upcoming Reservations</div>
+          <table class="data-table">
+            <thead><tr><th>Date</th><th>Time</th><th>Name</th><th>Party</th><th>Phone</th><th>Status</th><th>Action</th></tr></thead>
+            <tbody>
+              <tr><td>Jun 29</td><td>7:30 AM</td><td>Smith, T.</td><td>2</td><td>(540) 555-1234</td><td><span class="status-badge status-confirmed">Confirmed</span></td><td><button class="edit-btn">Edit</button></td></tr>
+              <tr><td>Jun 29</td><td>8:00 AM</td><td>Johnson, M.</td><td>4</td><td>(540) 555-5678</td><td><span class="status-badge status-confirmed">Confirmed</span></td><td><button class="edit-btn">Edit</button></td></tr>
+              <tr><td>Jun 29</td><td>6:00 PM</td><td>Anderson, J.</td><td>8</td><td>(540) 555-9012</td><td><span class="status-badge status-confirmed">Confirmed</span></td><td><button class="edit-btn">Edit</button></td></tr>
+              <tr><td>Jun 30</td><td>12:00 PM</td><td>Harris, P.</td><td>4</td><td>(540) 555-3456</td><td><span class="status-badge status-pending">Pending</span></td><td><button class="edit-btn">Edit</button></td></tr>
+              <tr><td>Jun 30</td><td>6:30 PM</td><td>Lewis, C.</td><td>6</td><td>(540) 555-7890</td><td><span class="status-badge status-confirmed">Confirmed</span></td><td><button class="edit-btn">Edit</button></td></tr>
+              <tr><td>Jul 01</td><td>11:30 AM</td><td>Walker, B.</td><td>3</td><td>(540) 555-2345</td><td><span class="status-badge status-confirmed">Confirmed</span></td><td><button class="edit-btn">Edit</button></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Order History -->
+      <div class="admin-panel" id="panel-orders">
+        <div class="section-header"><h2>Order History</h2></div>
+        <div class="chart-card">
+          <h3>Revenue — Last 7 Days</h3>
+          <div class="bar-chart">
+            <div class="bar-wrap"><div class="bar-val">$1,412</div><div class="bar" style="height:60%"></div><div class="bar-label">Mon</div></div>
+            <div class="bar-wrap"><div class="bar-val">$1,589</div><div class="bar" style="height:68%"></div><div class="bar-label">Tue</div></div>
+            <div class="bar-wrap"><div class="bar-val">$1,503</div><div class="bar" style="height:64%"></div><div class="bar-label">Wed</div></div>
+            <div class="bar-wrap"><div class="bar-val">$1,847</div><div class="bar" style="height:79%"></div><div class="bar-label">Thu</div></div>
+            <div class="bar-wrap"><div class="bar-val">$2,412</div><div class="bar" style="height:100%"></div><div class="bar-label">Fri</div></div>
+            <div class="bar-wrap"><div class="bar-val">$2,218</div><div class="bar" style="height:93%"></div><div class="bar-label">Sat</div></div>
+            <div class="bar-wrap"><div class="bar-val">$1,934</div><div class="bar" style="height:82%"></div><div class="bar-label">Sun</div></div>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <div class="table-title">Recent Orders Summary</div>
+          <table class="data-table">
+            <thead><tr><th>Date</th><th>Orders</th><th>Revenue</th><th>Avg Check</th><th>Top Item</th></tr></thead>
+            <tbody>
+              <tr><td>Jun 29 (Today)</td><td>66</td><td>$1,847</td><td>$28.00</td><td>Chicken Fried Steak</td></tr>
+              <tr><td>Jun 28 (Sun)</td><td>69</td><td>$1,934</td><td>$28.03</td><td>Sunday Pot Roast</td></tr>
+              <tr><td>Jun 27 (Sat)</td><td>79</td><td>$2,218</td><td>$28.07</td><td>Shrimp & Grits</td></tr>
+              <tr><td>Jun 26 (Fri)</td><td>86</td><td>$2,412</td><td>$28.05</td><td>Fish Fry Special</td></tr>
+              <tr><td>Jun 25 (Thu)</td><td>66</td><td>$1,847</td><td>$27.99</td><td>Chicken Fried Steak</td></tr>
+              <tr><td>Jun 24 (Wed)</td><td>54</td><td>$1,503</td><td>$27.83</td><td>Biscuits & Gravy</td></tr>
+              <tr><td>Jun 23 (Tue)</td><td>57</td><td>$1,589</td><td>$27.88</td><td>Southern Taco Tuesday</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Menu Manager -->
+      <div class="admin-panel" id="panel-menu">
+        <div class="section-header"><h2>Menu Manager</h2><button class="save-btn" onclick="this.textContent='Saved!'; this.classList.add('saved'); setTimeout(()=>{this.textContent='Save Changes';this.classList.remove('saved');},2000)">Save Changes</button></div>
+        <div class="table-wrap">
+          <div class="table-title">Menu Items — Edit Prices</div>
+          <table class="data-table">
+            <thead><tr><th>Item</th><th>Category</th><th>Price</th><th>Action</th></tr></thead>
+            <tbody id="menu-table-body">
+              <tr><td>Fried Green Tomatoes</td><td>Starters</td><td><input type="text" value="$9.00" style="width:70px;padding:0.2rem 0.4rem;border:1px solid var(--color-border);border-radius:0.25rem;font-size:0.8rem;"></td><td><button class="edit-btn">Update</button></td></tr>
+              <tr><td>Pimento Cheese Dip</td><td>Starters</td><td><input type="text" value="$8.00" style="width:70px;padding:0.2rem 0.4rem;border:1px solid var(--color-border);border-radius:0.25rem;font-size:0.8rem;"></td><td><button class="edit-btn">Update</button></td></tr>
+              <tr><td>Corn Fritters</td><td>Starters</td><td><input type="text" value="$7.00" style="width:70px;padding:0.2rem 0.4rem;border:1px solid var(--color-border);border-radius:0.25rem;font-size:0.8rem;"></td><td><button class="edit-btn">Update</button></td></tr>
+              <tr><td>Chicken Biscuit Sliders (3)</td><td>Starters</td><td><input type="text" value="$12.00" style="width:70px;padding:0.2rem 0.4rem;border:1px solid var(--color-border);border-radius:0.25rem;font-size:0.8rem;"></td><td><button class="edit-btn">Update</button></td></tr>
+              <tr><td>She-Crab Soup</td><td>Soups</td><td><input type="text" value="$9.00" style="width:70px;padding:0.2rem 0.4rem;border:1px solid var(--color-border);border-radius:0.25rem;font-size:0.8rem;"></td><td><button class="edit-btn">Update</button></td></tr>
+              <tr><td>Wedge Salad</td><td>Soups</td><td><input type="text" value="$11.00" style="width:70px;padding:0.2rem 0.4rem;border:1px solid var(--color-border);border-radius:0.25rem;font-size:0.8rem;"></td><td><button class="edit-btn">Update</button></td></tr>
+              <tr><td>Chicken Fried Steak</td><td>Mains</td><td><input type="text" value="$18.00" style="width:70px;padding:0.2rem 0.4rem;border:1px solid var(--color-border);border-radius:0.25rem;font-size:0.8rem;"></td><td><button class="edit-btn">Update</button></td></tr>
+              <tr><td>Smothered Pork Chop</td><td>Mains</td><td><input type="text" value="$20.00" style="width:70px;padding:0.2rem 0.4rem;border:1px solid var(--color-border);border-radius:0.25rem;font-size:0.8rem;"></td><td><button class="edit-btn">Update</button></td></tr>
+              <tr><td>Catfish Platter</td><td>Mains</td><td><input type="text" value="$17.00" style="width:70px;padding:0.2rem 0.4rem;border:1px solid var(--color-border);border-radius:0.25rem;font-size:0.8rem;"></td><td><button class="edit-btn">Update</button></td></tr>
+              <tr><td>Shrimp & Grits</td><td>Mains</td><td><input type="text" value="$22.00" style="width:70px;padding:0.2rem 0.4rem;border:1px solid var(--color-border);border-radius:0.25rem;font-size:0.8rem;"></td><td><button class="edit-btn">Update</button></td></tr>
+              <tr><td>Pot Roast Sunday Special</td><td>Mains</td><td><input type="text" value="$19.00" style="width:70px;padding:0.2rem 0.4rem;border:1px solid var(--color-border);border-radius:0.25rem;font-size:0.8rem;"></td><td><button class="edit-btn">Update</button></td></tr>
+              <tr><td>The Skillet Burger</td><td>Burgers</td><td><input type="text" value="$14.00" style="width:70px;padding:0.2rem 0.4rem;border:1px solid var(--color-border);border-radius:0.25rem;font-size:0.8rem;"></td><td><button class="edit-btn">Update</button></td></tr>
+              <tr><td>Biscuits & Gravy</td><td>Breakfast</td><td><input type="text" value="$9.00" style="width:70px;padding:0.2rem 0.4rem;border:1px solid var(--color-border);border-radius:0.25rem;font-size:0.8rem;"></td><td><button class="edit-btn">Update</button></td></tr>
+              <tr><td>Banana Pudding</td><td>Desserts</td><td><input type="text" value="$6.00" style="width:70px;padding:0.2rem 0.4rem;border:1px solid var(--color-border);border-radius:0.25rem;font-size:0.8rem;"></td><td><button class="edit-btn">Update</button></td></tr>
+              <tr><td>Peach Cobbler</td><td>Desserts</td><td><input type="text" value="$7.00" style="width:70px;padding:0.2rem 0.4rem;border:1px solid var(--color-border);border-radius:0.25rem;font-size:0.8rem;"></td><td><button class="edit-btn">Update</button></td></tr>
+              <tr><td>Sweet Tea</td><td>Drinks</td><td><input type="text" value="$3.00" style="width:70px;padding:0.2rem 0.4rem;border:1px solid var(--color-border);border-radius:0.25rem;font-size:0.8rem;"></td><td><button class="edit-btn">Update</button></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Weekly Specials -->
+      <div class="admin-panel" id="panel-specials">
+        <div class="section-header"><h2>Weekly Specials Editor</h2><button class="save-btn" onclick="this.textContent='Saved!'; this.classList.add('saved'); setTimeout(()=>{this.textContent='Save All';this.classList.remove('saved');},2000)">Save All</button></div>
+        <div class="specials-editor">
+          <div class="special-editor-card"><h4>Monday</h4><textarea>Blue Plate Special — rotating comfort food classic. Today: Meatloaf with brown gravy, mashed potatoes, and green beans. $12</textarea></div>
+          <div class="special-editor-card"><h4>Tuesday</h4><textarea>Southern Taco Tuesday — pulled pork with vinegar slaw in cast-iron-toasted tortillas, or catfish bites with remoulade. Two tacos + sweet tea. $11</textarea></div>
+          <div class="special-editor-card"><h4>Wednesday</h4><textarea>Breakfast for Dinner — full breakfast menu available at dinner prices. Country Breakfast $9, Biscuits & Gravy $7, Pancake Stack with free bacon $11.</textarea></div>
+          <div class="special-editor-card"><h4>Thursday</h4><textarea>Locals Night — show your Pulaski County ID for 10% off your entire check. Dine-in only. Cannot be combined with other offers.</textarea></div>
+          <div class="special-editor-card"><h4>Friday</h4><textarea>Friday Fish Fry — all-you-can-eat catfish fry starting 5pm. Cornmeal-crusted fillets, hush puppies, coleslaw, sweet tea. $16 per person.</textarea></div>
+          <div class="special-editor-card"><h4>Saturday</h4><textarea>Saturday Brunch 9am–2pm — eggs benedict with country ham, French toast with berry compote, bottomless coffee. Regular brunch menu also available.</textarea></div>
+          <div class="special-editor-card"><h4>Sunday</h4><textarea>Sunday Pot Roast — Bobby Ray's 6-hour slow-braised chuck roast. Available all day Sunday only. Serves until sold out (usually ~3pm). $19</textarea></div>
+          <div class="special-editor-card"><h4>Daily</h4><textarea>Dessert of the Day — Loretta Mae bakes something new every day. Ask your server for today's creation. Usually $6–7.</textarea></div>
+        </div>
+      </div>
+
+      <!-- Blog Manager -->
+      <div class="admin-panel" id="panel-blog">
+        <div class="section-header"><h2>Blog Manager</h2><button class="save-btn">+ New Post</button></div>
+        <div class="table-wrap">
+          <div class="table-title">Published Articles</div>
+          <table class="data-table">
+            <thead><tr><th>Title</th><th>Category</th><th>Published</th><th>Status</th><th>Action</th></tr></thead>
+            <tbody>
+              <tr><td>The Story Behind Our Famous Chicken Fried Steak</td><td>Our Story</td><td>May 10, 2024</td><td><span class="status-badge status-confirmed">Published</span></td><td><button class="edit-btn">Edit</button></td></tr>
+              <tr><td>Why We Only Use Local Virginia Ingredients</td><td>Farm to Table</td><td>Apr 22, 2024</td><td><span class="status-badge status-confirmed">Published</span></td><td><button class="edit-btn">Edit</button></td></tr>
+              <tr><td>How to Make Perfect Southern Biscuits at Home</td><td>Recipes</td><td>Mar 8, 2024</td><td><span class="status-badge status-confirmed">Published</span></td><td><button class="edit-btn">Edit</button></td></tr>
+              <tr><td>Pulaski's Best Kept Secret: Our All-Day Breakfast</td><td>Featured</td><td>Feb 14, 2024</td><td><span class="status-badge status-confirmed">Published</span></td><td><button class="edit-btn">Edit</button></td></tr>
+              <tr><td>Planning a Family Reunion? Here's What We Offer</td><td>Events</td><td>Jan 20, 2024</td><td><span class="status-badge status-confirmed">Published</span></td><td><button class="edit-btn">Edit</button></td></tr>
+              <tr><td>The History of Southern Comfort Food</td><td>Food Culture</td><td>Dec 5, 2023</td><td><span class="status-badge status-confirmed">Published</span></td><td><button class="edit-btn">Edit</button></td></tr>
+              <tr><td>Fall 2024 Harvest Menu Preview</td><td>News</td><td>—</td><td><span class="status-badge status-pending">Draft</span></td><td><button class="edit-btn">Edit</button></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<script>
+(function() {
+  const CORRECT_PASSWORD = 'admin2024';
+  const gateEl = document.getElementById('password-gate');
+  const appEl = document.getElementById('admin-app');
+  const gateInput = document.getElementById('gate-password');
+  const gateBtn = document.getElementById('gate-submit');
+  const gateError = document.getElementById('gate-error');
+  const logoutBtn = document.getElementById('admin-logout');
+
+  function unlock() {
+    gateEl.style.display = 'none';
+    appEl.style.display = 'block';
+  }
+
+  gateBtn.addEventListener('click', () => {
+    if (gateInput.value === CORRECT_PASSWORD) {
+      gateError.style.display = 'none';
+      unlock();
+    } else {
+      gateError.style.display = 'block';
+      gateInput.value = '';
+      gateInput.focus();
+    }
+  });
+
+  gateInput.addEventListener('keydown', e => { if (e.key === 'Enter') gateBtn.click(); });
+
+  logoutBtn.addEventListener('click', () => {
+    appEl.style.display = 'none';
+    gateEl.style.display = 'flex';
+    gateInput.value = '';
+  });
+
+  // Panel navigation
+  document.querySelectorAll('.admin-nav-item').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.admin-nav-item').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.admin-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      const panelId = 'panel-' + btn.dataset.panel;
+      const panel = document.getElementById(panelId);
+      if (panel) panel.classList.add('active');
+    });
+  });
+
+  // Edit button feedback
+  document.querySelectorAll('.edit-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const orig = btn.textContent;
+      btn.textContent = 'Saved!';
+      btn.style.background = '#14532D';
+      btn.style.color = '#fff';
+      btn.style.borderColor = '#14532D';
+      setTimeout(() => {
+        btn.textContent = orig;
+        btn.style.background = '';
+        btn.style.color = '';
+        btn.style.borderColor = '';
+      }, 1500);
+    });
+  });
+})();
+</script>
+</body>
+</html>

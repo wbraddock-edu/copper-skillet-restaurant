@@ -1,0 +1,214 @@
+/* ============================================
+   THE COPPER SKILLET — Footer
+   ============================================ */
+
+.site-footer {
+  background: var(--brown-deep);
+  color: var(--color-text-inverse);
+  padding-top: clamp(var(--space-12), 6vw, var(--space-20));
+}
+
+.site-footer__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-8);
+  max-width: var(--content-wide);
+  margin-inline: auto;
+  padding-inline: var(--space-6);
+  padding-bottom: var(--space-12);
+}
+
+@media (min-width: 640px) {
+  .site-footer__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  .site-footer__grid {
+    grid-template-columns: 2fr 1fr 1fr 1.5fr;
+  }
+}
+
+.footer-brand__logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+  text-decoration: none;
+}
+
+.footer-brand__logo svg {
+  color: var(--copper-light);
+}
+
+.footer-brand__name {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: var(--cream);
+}
+
+.footer-brand__desc {
+  font-size: var(--text-sm);
+  color: rgba(250, 247, 240, 0.65);
+  line-height: 1.7;
+  margin-bottom: var(--space-5);
+  max-width: 32ch;
+}
+
+.footer-social {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.footer-social a {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  background: rgba(255,255,255,0.1);
+  color: rgba(250, 247, 240, 0.7);
+  transition: all var(--transition-interactive);
+  text-decoration: none;
+}
+
+.footer-social a:hover {
+  background: var(--copper);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.footer-col h4 {
+  font-family: var(--font-heading);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--copper-light);
+  margin-bottom: var(--space-4);
+}
+
+.footer-col ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.footer-col ul a {
+  font-size: var(--text-sm);
+  color: rgba(250, 247, 240, 0.65);
+  text-decoration: none;
+  transition: color var(--transition-interactive);
+}
+
+.footer-col ul a:hover {
+  color: var(--cream);
+}
+
+.footer-hours p {
+  font-size: var(--text-sm);
+  color: rgba(250, 247, 240, 0.65);
+  line-height: 1.8;
+}
+
+.footer-hours .hours-row {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-4);
+  font-size: var(--text-sm);
+  color: rgba(250, 247, 240, 0.65);
+  padding-block: 2px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.footer-hours .hours-row:last-child {
+  border-bottom: none;
+}
+
+.footer-hours .hours-row .day {
+  color: rgba(250, 247, 240, 0.5);
+}
+
+.footer-hours .hours-row .time {
+  color: rgba(250, 247, 240, 0.85);
+  font-weight: 600;
+}
+
+.footer-contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.footer-contact-info a,
+.footer-contact-info p {
+  font-size: var(--text-sm);
+  color: rgba(250, 247, 240, 0.65);
+  text-decoration: none;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  transition: color var(--transition-interactive);
+}
+
+.footer-contact-info a:hover {
+  color: var(--cream);
+}
+
+.footer-contact-info svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--copper-light);
+}
+
+/* Bottom bar */
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding-block: var(--space-4);
+  max-width: var(--content-wide);
+  margin-inline: auto;
+  padding-inline: var(--space-6);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.footer-bottom p {
+  font-size: var(--text-xs);
+  color: rgba(250, 247, 240, 0.4);
+  max-width: none;
+}
+
+.footer-bottom a {
+  font-size: var(--text-xs);
+  color: rgba(250, 247, 240, 0.4);
+  text-decoration: none;
+  transition: color var(--transition-interactive);
+}
+
+.footer-bottom a:hover {
+  color: var(--copper-light);
+}
+
+.footer-bottom__links {
+  display: flex;
+  gap: var(--space-4);
+}
+
+.footer-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: rgba(180, 83, 9, 0.2);
+  border: 1px solid rgba(180, 83, 9, 0.3);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-full);
+  font-size: var(--text-xs);
+  color: var(--copper-light);
+  margin-top: var(--space-4);
+}

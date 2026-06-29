@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Story Behind Our Famous Chicken Fried Steak — The Copper Skillet</title>
+  <meta name="description" content="Bobby Ray Harmon tells the story of how his grandmother Nell's chicken fried steak recipe became the signature dish at The Copper Skillet in Pulaski, VA.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Merriweather:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/nav.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <style>
+    .article-hero { position: relative; height: clamp(300px, 50vw, 560px); overflow: hidden; }
+    .article-hero img { width: 100%; height: 100%; object-fit: cover; }
+    .article-hero__overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 30%, rgba(28,10,0,0.85)); }
+    .article-hero__caption { position: absolute; bottom: clamp(var(--space-8),6vw,var(--space-12)); left: 0; right: 0; }
+    .article-hero__caption .container { display: flex; flex-direction: column; gap: var(--space-3); }
+    .article-layout { display: grid; grid-template-columns: 1fr; gap: var(--space-10); padding-block: clamp(var(--space-10), 6vw, var(--space-16)); }
+    @media (min-width: 900px) { .article-layout { grid-template-columns: minmax(0, 1fr) 300px; gap: var(--space-12); align-items: start; } }
+    .article-body { max-width: 72ch; }
+    .article-body h2 { font-family: var(--font-heading); font-size: var(--text-xl); font-weight: 700; color: var(--color-text); margin: var(--space-8) 0 var(--space-4); }
+    .article-body p { font-family: var(--font-body); font-size: var(--text-base); color: var(--color-text-muted); line-height: 1.8; margin-bottom: var(--space-5); }
+    .article-body blockquote { border-left: 4px solid var(--color-primary); padding: var(--space-4) var(--space-6); margin: var(--space-8) 0; background: rgba(180,83,9,0.04); border-radius: 0 var(--radius-lg) var(--radius-lg) 0; }
+    .article-body blockquote p { font-family: var(--font-heading); font-style: italic; font-size: var(--text-lg); color: var(--color-text); margin: 0; line-height: 1.6; }
+    .article-body .article-img { width: 100%; border-radius: var(--radius-xl); margin: var(--space-8) 0; overflow: hidden; }
+    .article-body .article-img img { width: 100%; height: 100%; object-fit: cover; }
+    .article-body .recipe-box { background: var(--color-surface-offset); border: 1px solid var(--color-border); border-radius: var(--radius-xl); padding: var(--space-6); margin: var(--space-8) 0; }
+    .article-body .recipe-box h3 { font-family: var(--font-heading); font-weight: 700; margin-bottom: var(--space-4); font-size: var(--text-lg); color: var(--color-text); }
+    .article-body .recipe-box ul { list-style: disc; margin-left: var(--space-5); display: flex; flex-direction: column; gap: var(--space-2); }
+    .article-body .recipe-box ul li { font-size: var(--text-sm); color: var(--color-text-muted); line-height: 1.6; max-width: 65ch; }
+    /* Sidebar */
+    .article-sidebar { position: sticky; top: 80px; display: flex; flex-direction: column; gap: var(--space-5); }
+    .sidebar-card { background: var(--color-surface); border: 1px solid var(--color-divider); border-radius: var(--radius-xl); padding: var(--space-5); }
+    .sidebar-card h4 { font-family: var(--font-heading); font-weight: 700; font-size: var(--text-sm); text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-primary); margin-bottom: var(--space-4); }
+    .related-article { display: flex; gap: var(--space-3); align-items: flex-start; padding-block: var(--space-3); border-bottom: 1px solid var(--color-divider); }
+    .related-article:last-child { border-bottom: none; padding-bottom: 0; }
+    .related-article img { width: 60px; height: 60px; border-radius: var(--radius-lg); object-fit: cover; flex-shrink: 0; }
+    .related-article a { font-size: var(--text-sm); font-weight: 600; color: var(--color-text); text-decoration: none; line-height: 1.35; transition: color var(--transition-interactive); }
+    .related-article a:hover { color: var(--color-primary); }
+    .related-article time { font-size: var(--text-xs); color: var(--color-text-faint); margin-top: var(--space-1); display: block; }
+    .author-card { display: flex; align-items: center; gap: var(--space-3); }
+    .author-avatar { width: 52px; height: 52px; border-radius: var(--radius-full); overflow: hidden; flex-shrink: 0; }
+    .author-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .author-card strong { font-size: var(--text-sm); color: var(--color-text); }
+    .author-card span { font-size: var(--text-xs); color: var(--color-text-muted); }
+    .toc-list { list-style: none; display: flex; flex-direction: column; gap: var(--space-1); }
+    .toc-list a { font-size: var(--text-sm); color: var(--color-text-muted); text-decoration: none; padding: var(--space-1) var(--space-2); border-radius: var(--radius-md); display: block; transition: all var(--transition-interactive); }
+    .toc-list a:hover { background: rgba(180,83,9,0.06); color: var(--color-primary); }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "The Story Behind Our Famous Chicken Fried Steak",
+    "author": {"@type": "Person", "name": "Bobby Ray Harmon"},
+    "publisher": {"@type": "Organization", "name": "The Copper Skillet"},
+    "datePublished": "2024-05-10",
+    "image": "https://images.unsplash.com/photo-1598515213980-6b1f4b89df68?w=1200"
+  }
+  </script>
+</head>
+<body>
+
+<nav class="site-nav" role="navigation" aria-label="Main navigation">
+  <div class="site-nav__inner">
+    <a href="index.html" class="site-nav__logo"><svg class="site-nav__logo-mark" viewBox="0 0 44 44" fill="none" aria-hidden="true"><circle cx="22" cy="22" r="20" fill="currentColor" opacity="0.12"/><path d="M12 28 C12 28 14 18 22 18 C30 18 32 28 32 28" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" fill="none"/><path d="M10 28 L34 28" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><path d="M22 18 L22 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><path d="M18 12 L26 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg><div class="site-nav__logo-text"><span class="site-nav__logo-name">The Copper Skillet</span><span class="site-nav__logo-tagline">Southern Comfort · Pulaski, VA</span></div></a>
+    <ul class="site-nav__links" role="list"><li><a href="index.html">Home</a></li><li><a href="menu.html">Menu</a></li><li><a href="about.html">About</a></li><li><a href="events.html">Events</a></li><li><a href="blog.html" class="active">Blog</a></li><li><a href="reservation.html" class="nav-cta">Reserve a Table</a></li></ul>
+    <div class="site-nav__controls"><button class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode"></button><button class="mobile-menu-btn" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button></div>
+  </div>
+  <div class="mobile-menu" role="menu"><a href="index.html">Home</a><a href="menu.html">Menu</a><a href="about.html">Our Story</a><a href="events.html">Events</a><a href="blog.html">Blog</a><a href="contact.html">Contact</a><a href="reservation.html" class="nav-cta">Reserve a Table</a></div>
+</nav>
+
+<!-- Hero Image -->
+<div class="article-hero">
+  <img src="https://images.unsplash.com/photo-1598515213980-6b1f4b89df68?w=1400&auto=format&q=85" alt="Chicken fried steak with cream gravy and mashed potatoes at The Copper Skillet" loading="eager" fetchpriority="high">
+  <div class="article-hero__overlay"></div>
+  <div class="article-hero__caption">
+    <div class="container">
+      <span class="badge badge--copper">Our Story</span>
+      <h1 style="font-family:var(--font-display); font-size:clamp(1.5rem,4vw,3rem); color:var(--cream); max-width: 18ch; line-height:1.1;">The Story Behind Our Famous Chicken Fried Steak</h1>
+      <div style="display:flex; align-items:center; gap:var(--space-4); flex-wrap:wrap;">
+        <span style="font-size:var(--text-sm); color:rgba(255,251,235,0.75);">By Bobby Ray Harmon</span>
+        <span style="color:rgba(255,251,235,0.4);">·</span>
+        <time style="font-size:var(--text-sm); color:rgba(255,251,235,0.75);" datetime="2024-05-10">May 10, 2024</time>
+        <span style="color:rgba(255,251,235,0.4);">·</span>
+        <span style="font-size:var(--text-sm); color:rgba(255,251,235,0.75);">8 min read</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="container article-layout">
+    <!-- Article body -->
+    <article class="article-body">
+      <p>There is a specific sound that chicken fried steak makes when it hits hot oil. Not a sizzle, exactly. More of a sustained, satisfied hiss — like the cast iron is exhaling. I've been hearing that sound my whole life, and it still stops me cold every single time it happens in my kitchen.</p>
+
+      <p>The first time I heard it, I was seven years old. My grandmother Nell was standing at the stove, her back to me, the radio on a country station she'd had tuned to since before I was born. She didn't turn around when I came in. She just said, without looking, "Come stand here where you can see." I stood on the step stool my grandfather had built for exactly that purpose, and I watched.</p>
+
+      <h2>Grandmother Nell's Kitchen</h2>
+
+      <p>Eleanor "Nell" Harmon was born in Giles County, Virginia, in 1932. She learned to cook from her own mother, who had learned from hers, in a chain of kitchen knowledge that stretched back generations to a time when cooks had to be creative because necessity demanded it. Nell cooked everything from memory — not a recipe in sight, though she kept index cards in a wooden box she'd received as a wedding gift. Those cards weren't instructions. They were reminders. Notes to herself about quantities she might forget decades later.</p>
+
+      <p>Her chicken fried steak recipe read, in full: "Round steak. Pound it flat. Soak in milk. Salt, pepper, garlic. Flour twice. Hot lard. Don't rush. Make gravy from the pan."</p>
+
+      <p>That's it. That's the entire recipe that thousands of people have driven to Pulaski to eat. Seven lines on an index card stained with what I suspect is buttermilk.</p>
+
+      <blockquote>
+        <p>"Don't rush." Those are the two most important words in Southern cooking. Everything else follows from that.</p>
+      </blockquote>
+
+      <h2>What Makes It Different</h2>
+
+      <p>There are a thousand chicken fried steaks in Virginia. Most of them are fine. Some are good. Ours is something else, and I don't say that to be boastful — I say it because I've spent fifteen years studying exactly why, trying to understand what Nell knew intuitively.</p>
+
+      <p>The first secret is the pound. We use round steak — an inexpensive, tough cut that gets tender through force. We pound it to about a quarter-inch thick using a meat mallet, working from the center out. Most restaurants buy it pre-pounded. We do it ourselves, every morning, and the texture is noticeably different. The meat has been worked in a specific way that creates tiny channels in the fiber, channels that hold the coating and keep the moisture locked inside.</p>
+
+      <p>The second secret is the soak. We submerge the steak in whole buttermilk for at least two hours, sometimes overnight. The acidity in the buttermilk breaks down the protein in a way that tenderizes without turning the meat mushy. It also creates a slightly tacky surface that the coating clings to.</p>
+
+      <div class="article-img" style="aspect-ratio: 16/9;">
+        <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=900&auto=format&q=80" alt="Bobby Ray working in the Copper Skillet kitchen" loading="lazy">
+      </div>
+
+      <h2>The Coating and the Fry</h2>
+
+      <p>The coating is all-purpose flour seasoned generously with salt, black pepper, garlic powder, onion powder, and a small amount of cayenne — enough to notice but not enough to announce itself. We dredge the steak twice: once out of the buttermilk, into the flour, then back into the buttermilk and into the flour again. That double coat is what creates the thick, craggy crust that holds the gravy without getting soggy.</p>
+
+      <p>We fry in a mixture of vegetable oil and lard. I know lard isn't fashionable. I don't care. The flavor it contributes is irreplaceable. We keep the oil at 350 degrees — not hotter — and we don't crowd the pan. Two steaks maximum at a time. The temperature drops when you add cold meat, and if you crowd the pan, the temperature drops too far and the crust absorbs oil instead of sealing. Patience is not optional.</p>
+
+      <p>Each steak fries for about four minutes per side. You know it's done when the crust is a deep, even golden brown and the edges have started to pull away from the pan. Not pale gold. Deep, rich brown.</p>
+
+      <h2>The Gravy</h2>
+
+      <p>The gravy is where the dish either succeeds or fails, and where most restaurants cut corners. We make our gravy from the pan drippings — the flour and fat and milk solids left in the cast iron after frying. We drain off most of the oil, leaving just enough to make a roux, add a generous tablespoon of flour, whisk it together over medium heat until it smells nutty and toasty, then add whole milk in a slow stream while whisking constantly.</p>
+
+      <p>The gravy needs cream, salt, and an amount of black pepper that will make you question yourself before you add it. Then you add more. Nell's gravy was the color of storm clouds — gray from the pepper, rich from the fat. When you poured it over a steak, it flowed like it owned the place.</p>
+
+      <div class="recipe-box">
+        <h3>Nell's Chicken Fried Steak — Key Steps</h3>
+        <ul>
+          <li>Start with round steak and pound to ¼-inch thickness using a meat mallet, working center to edge</li>
+          <li>Soak in whole buttermilk for 2 hours minimum (overnight for best results)</li>
+          <li>Season flour generously: salt, pepper, garlic powder, onion powder, a pinch of cayenne</li>
+          <li>Double-dredge: flour → buttermilk → flour again for maximum crust</li>
+          <li>Fry in 350°F oil/lard mixture — two steaks max per batch</li>
+          <li>4 minutes per side — you want deep golden brown, not pale gold</li>
+          <li>Make gravy immediately in the same pan from the drippings</li>
+          <li>Season the gravy aggressively — especially the black pepper</li>
+        </ul>
+      </div>
+
+      <h2>The First Day We Served It</h2>
+
+      <p>When I opened The Copper Skillet in March 2009, chicken fried steak wasn't even on the first menu draft. I thought it was too simple, too obvious. My friend Carol Anne told me I was overthinking it. "Bobby Ray, that's the thing your grandmother taught you best. Put it on the menu." I put it on.</p>
+
+      <p>That first Thursday, I sold twelve orders. By Friday we had twenty. By the following week I was making triple the prep. Within a month, a woman from the Roanoke Times had heard about it from her sister, driven down to Pulaski, eaten at our counter, and written four paragraphs about it in the dining section. The article was headlined "A Grandmother's Gift to Pulaski."</p>
+
+      <p>I have that clipping framed in the kitchen. Nell never got to read it — she passed away in 2008, the year before we opened. But I think she would have liked it. Not for the compliment. For the truth of it.</p>
+
+      <h2>What Hasn't Changed</h2>
+
+      <p>Fifteen years later, the recipe is exactly what Nell wrote on that index card. We have never changed it. We have never adjusted the flour ratio, updated the fry method, or substituted the buttermilk. When a new line cook comes to work for me and suggests a tweak — a different spice, a lighter coating, a different oil — I listen politely and explain that this is a recipe with a history, and the history is the point.</p>
+
+      <p>People don't come to The Copper Skillet for innovation. They come for something that has been done the same way, by the same family, with the same care, for long enough that it feels like memory. They come because their grandmother made something like it. Or they wish their grandmother had. Either way, the plate in front of them is Nell's plate, passed through me, landing on their table.</p>
+
+      <p>That's what Southern food is. It's not cuisine. It's continuity.</p>
+
+      <p>We serve the chicken fried steak every day but Sunday. On Sunday, you get the pot roast. That's Nell's recipe too.</p>
+
+      <p style="font-style:italic; color:var(--color-text-faint); font-size:var(--text-sm); margin-top:var(--space-8); padding-top:var(--space-6); border-top:1px solid var(--color-divider);">Bobby Ray Harmon is the owner and head cook at The Copper Skillet, 75 Washington Ave, Pulaski, VA. He's been cooking chicken fried steak since he was tall enough to see over the stove.</p>
+
+      <!-- Related Articles -->
+      <div style="margin-top:var(--space-12); padding-top:var(--space-8); border-top:2px solid var(--color-divider);">
+        <h3 style="font-family:var(--font-heading); font-weight:700; margin-bottom:var(--space-6);">More From the Kitchen</h3>
+        <div style="display:grid; grid-template-columns:1fr; gap:var(--space-4);">
+          <a href="blog.html" style="display:flex; gap:var(--space-4); align-items:center; padding:var(--space-4); background:var(--color-surface); border-radius:var(--radius-lg); border:1px solid var(--color-divider); text-decoration:none; transition:box-shadow var(--transition-interactive);" onmouseover="this.style.boxShadow='var(--shadow-md)'" onmouseout="this.style.boxShadow=''">
+            <img src="https://images.unsplash.com/photo-1584278860047-22db9ff82bed?w=120&auto=format&q=75" alt="Fresh biscuits" style="width:70px;height:70px;border-radius:var(--radius-md);object-fit:cover;flex-shrink:0;">
+            <div><p style="font-weight:700; color:var(--color-text); font-size:var(--text-sm); margin:0; line-height:1.4;">How to Make Perfect Southern Biscuits at Home</p><time style="font-size:var(--text-xs);color:var(--color-text-faint);">Mar 8, 2024</time></div>
+          </a>
+          <a href="blog.html" style="display:flex; gap:var(--space-4); align-items:center; padding:var(--space-4); background:var(--color-surface); border-radius:var(--radius-lg); border:1px solid var(--color-divider); text-decoration:none; transition:box-shadow var(--transition-interactive);" onmouseover="this.style.boxShadow='var(--shadow-md)'" onmouseout="this.style.boxShadow=''">
+            <img src="https://images.unsplash.com/photo-1472653525502-fc569e405a74?w=120&auto=format&q=75" alt="Local farm produce" style="width:70px;height:70px;border-radius:var(--radius-md);object-fit:cover;flex-shrink:0;">
+            <div><p style="font-weight:700; color:var(--color-text); font-size:var(--text-sm); margin:0; line-height:1.4;">Why We Only Use Local Virginia Ingredients</p><time style="font-size:var(--text-xs);color:var(--color-text-faint);">Apr 22, 2024</time></div>
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Sidebar -->
+    <aside class="article-sidebar">
+      <div class="sidebar-card">
+        <h4>About the Author</h4>
+        <div class="author-card">
+          <div class="author-avatar">
+            <img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=200&auto=format&q=75" alt="Bobby Ray Harmon">
+          </div>
+          <div>
+            <strong>Bobby Ray Harmon</strong>
+            <span style="display:block; font-size:var(--text-xs); color:var(--color-text-muted); margin-top:2px;">Owner & Head Cook<br>The Copper Skillet</span>
+          </div>
+        </div>
+      </div>
+      <div class="sidebar-card">
+        <h4>In This Article</h4>
+        <ul class="toc-list">
+          <li><a href="#grandmother-nells-kitchen">Grandmother Nell's Kitchen</a></li>
+          <li><a href="#what-makes-it-different">What Makes It Different</a></li>
+          <li><a href="#the-coating-and-the-fry">The Coating and the Fry</a></li>
+          <li><a href="#the-gravy">The Gravy</a></li>
+          <li><a href="#the-first-day">The First Day We Served It</a></li>
+          <li><a href="#what-hasnt-changed">What Hasn't Changed</a></li>
+        </ul>
+      </div>
+      <div class="sidebar-card" style="background:var(--brown-deep); border-color:var(--brown-mid);">
+        <h4 style="color:var(--copper-light);">Try It Yourself</h4>
+        <p style="font-size:var(--text-sm); color:rgba(255,251,235,0.65); margin-bottom:var(--space-4); line-height:1.6;">The Chicken Fried Steak is on the menu every day but Sunday. Come taste the original.</p>
+        <a href="reservation.html" class="btn btn--ghost" style="width:100%; justify-content:center; font-size:var(--text-sm);">Reserve a Table</a>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="site-footer__grid">
+    <div class="footer-brand"><a href="index.html" class="footer-brand__logo"><svg width="36" height="36" viewBox="0 0 44 44" fill="none" aria-hidden="true"><circle cx="22" cy="22" r="20" fill="currentColor" opacity="0.15"/><path d="M12 28 C12 28 14 18 22 18 C30 18 32 28 32 28" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" fill="none"/><path d="M10 28 L34 28" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><path d="M22 18 L22 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><path d="M18 12 L26 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg><span class="footer-brand__name">The Copper Skillet</span></a><p class="footer-brand__desc">Southern comfort food made from scratch in Pulaski, Virginia. Family owned since 2009.</p></div>
+    <div class="footer-col"><h4>Navigate</h4><ul role="list"><li><a href="index.html">Home</a></li><li><a href="menu.html">Full Menu</a></li><li><a href="about.html">Our Story</a></li><li><a href="events.html">Events</a></li><li><a href="blog.html">Blog</a></li><li><a href="reservation.html">Reserve</a></li></ul></div>
+    <div class="footer-col"><h4>Hours</h4><div class="footer-hours"><div class="hours-row"><span class="day">Mon – Thu</span><span class="time">7am – 9pm</span></div><div class="hours-row"><span class="day">Fri – Sat</span><span class="time">7am – 10pm</span></div><div class="hours-row"><span class="day">Sunday</span><span class="time">9am – 8pm</span></div></div></div>
+    <div class="footer-col"><h4>Contact</h4><div class="footer-contact-info"><a href="tel:+15405550421"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.29h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.4a16 16 0 0 0 5.58 5.58l.97-.97a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/></svg>(540) 555-0421</a><p><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>75 Washington Ave, Pulaski, VA 24301</p></div></div>
+  </div>
+  <div class="footer-bottom"><p>&copy; 2024 The Copper Skillet · <a href="https://designholistically.com" target="_blank" rel="noopener">Design Holistically</a></p></div>
+</footer>
+
+<script src="js/main.js" defer></script>
+</body>
+</html>

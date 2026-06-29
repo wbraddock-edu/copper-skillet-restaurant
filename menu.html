@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Full Menu — The Copper Skillet, Pulaski VA</title>
+  <meta name="description" content="Browse The Copper Skillet's full menu — Southern comfort food made from scratch. Starters, mains, breakfast all day, desserts, and more in Pulaski, VA.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Merriweather:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/nav.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <style>
+    /* Page header */
+    .page-hero {
+      background: linear-gradient(135deg, var(--brown-deep) 0%, var(--brown-mid) 100%);
+      padding: clamp(var(--space-12), 8vw, var(--space-20)) 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1200&auto=format&q=60') center/cover;
+      opacity: 0.15;
+    }
+    .page-hero__inner {
+      position: relative;
+      z-index: 1;
+    }
+    .page-hero h1 {
+      font-family: var(--font-display);
+      font-size: var(--text-3xl);
+      color: var(--cream);
+      margin-bottom: var(--space-3);
+    }
+    .page-hero p {
+      font-family: var(--font-heading);
+      font-style: italic;
+      color: rgba(255,251,235,0.75);
+      font-size: var(--text-lg);
+      max-width: 50ch;
+      margin: 0 auto var(--space-5);
+    }
+    /* Menu tabs */
+    .menu-tabs {
+      background: var(--color-surface);
+      border-bottom: 1px solid var(--color-divider);
+      position: sticky;
+      top: 60px;
+      z-index: 50;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .menu-tabs::-webkit-scrollbar { display: none; }
+    .menu-tabs__inner {
+      display: flex;
+      gap: 0;
+      max-width: var(--content-wide);
+      margin: 0 auto;
+      padding-inline: var(--space-6);
+    }
+    .menu-tab-btn {
+      flex-shrink: 0;
+      padding: var(--space-4) var(--space-5);
+      font-family: var(--font-body);
+      font-size: var(--text-sm);
+      font-weight: 600;
+      color: var(--color-text-muted);
+      background: none;
+      border: none;
+      border-bottom: 3px solid transparent;
+      cursor: pointer;
+      transition: all var(--transition-interactive);
+      white-space: nowrap;
+    }
+    .menu-tab-btn:hover { color: var(--color-primary); }
+    .menu-tab-btn.active {
+      color: var(--color-primary);
+      border-bottom-color: var(--color-primary);
+    }
+    /* Menu sections */
+    .menu-page { padding-block: clamp(var(--space-8), 5vw, var(--space-16)); }
+    .menu-section { margin-bottom: var(--space-12); }
+    .menu-section__header {
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+      margin-bottom: var(--space-8);
+      padding-bottom: var(--space-4);
+      border-bottom: 2px solid var(--color-divider);
+    }
+    .menu-section__icon {
+      width: 48px;
+      height: 48px;
+      background: rgba(180,83,9,0.1);
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-primary);
+      flex-shrink: 0;
+    }
+    .menu-section__title {
+      font-family: var(--font-display);
+      font-size: var(--text-xl);
+      color: var(--color-text);
+    }
+    .menu-section__sub {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      font-style: italic;
+    }
+    /* Menu grid */
+    .menu-items-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
+    }
+    @media (min-width: 640px) {
+      .menu-items-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 1000px) {
+      .menu-items-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    /* Menu items with photo */
+    .menu-item-card {
+      background: var(--color-surface);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      border: 1px solid var(--color-divider);
+      transition: box-shadow var(--transition-interactive), transform var(--transition-interactive);
+    }
+    .menu-item-card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-2px);
+    }
+    .menu-item-card__img {
+      aspect-ratio: 4/3;
+      overflow: hidden;
+    }
+    .menu-item-card__img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .menu-item-card:hover .menu-item-card__img img { transform: scale(1.05); }
+    .menu-item-card__body { padding: var(--space-4); }
+    /* Menu row (no photo) */
+    .menu-items-list { display: flex; flex-direction: column; gap: var(--space-1); }
+    .menu-item-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: var(--space-4);
+      padding: var(--space-3) var(--space-4);
+      border-radius: var(--radius-md);
+      transition: background var(--transition-interactive);
+    }
+    .menu-item-row:hover { background: var(--color-surface-offset); }
+    .menu-item-row:nth-child(even) { background: var(--color-surface); }
+    .menu-item-row:nth-child(even):hover { background: var(--color-surface-offset); }
+    .menu-item-row__left { flex: 1; }
+    .menu-item-row__name {
+      font-family: var(--font-heading);
+      font-size: var(--text-base);
+      font-weight: 700;
+      color: var(--color-text);
+    }
+    .menu-item-row__desc {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      margin-top: 2px;
+      line-height: 1.5;
+    }
+    .menu-item-row__price {
+      font-family: var(--font-display);
+      font-size: var(--text-lg);
+      color: var(--color-primary);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .menu-item-card__name {
+      font-family: var(--font-heading);
+      font-size: var(--text-base);
+      font-weight: 700;
+      color: var(--color-text);
+      margin-bottom: var(--space-2);
+    }
+    .menu-item-card__price {
+      font-family: var(--font-display);
+      font-size: var(--text-lg);
+      color: var(--color-primary);
+      margin-bottom: var(--space-2);
+    }
+    .menu-item-card__desc {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      line-height: 1.55;
+    }
+    /* Sides grid */
+    .sides-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-3);
+    }
+    @media (min-width: 640px) { .sides-grid { grid-template-columns: repeat(4, 1fr); } }
+    .side-item {
+      background: var(--color-surface);
+      border: 1px solid var(--color-divider);
+      border-radius: var(--radius-lg);
+      padding: var(--space-4);
+      text-align: center;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: var(--text-sm);
+      color: var(--color-text);
+      transition: all var(--transition-interactive);
+    }
+    .side-item:hover {
+      background: rgba(180,83,9,0.06);
+      border-color: var(--color-primary);
+      color: var(--color-primary);
+    }
+    /* Allergen note */
+    .allergen-note {
+      background: rgba(20,83,45,0.06);
+      border: 1px solid rgba(20,83,45,0.15);
+      border-radius: var(--radius-lg);
+      padding: var(--space-5);
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-4);
+      margin-bottom: var(--space-8);
+    }
+    .allergen-note svg { color: var(--color-secondary); flex-shrink: 0; margin-top: 2px; }
+    .allergen-note p { font-size: var(--text-sm); color: var(--color-text-muted); max-width: none; }
+    .allergen-note strong { color: var(--color-text); }
+    /* Menu CTAs */
+    .menu-ctas {
+      background: var(--brown-deep);
+      padding: clamp(var(--space-8), 5vw, var(--space-12));
+      text-align: center;
+    }
+    .menu-ctas h2 { font-family: var(--font-display); color: var(--cream); margin-bottom: var(--space-3); }
+    .menu-ctas p { color: rgba(255,251,235,0.65); font-size: var(--text-base); margin-bottom: var(--space-6); max-width: 50ch; margin-inline: auto; }
+    .menu-ctas .btn-group { display: flex; gap: var(--space-4); justify-content: center; flex-wrap: wrap; }
+  </style>
+</head>
+<body>
+
+<nav class="site-nav" role="navigation" aria-label="Main navigation">
+  <div class="site-nav__inner">
+    <a href="index.html" class="site-nav__logo" aria-label="The Copper Skillet home">
+      <svg class="site-nav__logo-mark" viewBox="0 0 44 44" fill="none" aria-hidden="true">
+        <circle cx="22" cy="22" r="20" fill="currentColor" opacity="0.12"/>
+        <path d="M12 28 C12 28 14 18 22 18 C30 18 32 28 32 28" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+        <path d="M10 28 L34 28" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M22 18 L22 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M18 12 L26 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      </svg>
+      <div class="site-nav__logo-text">
+        <span class="site-nav__logo-name">The Copper Skillet</span>
+        <span class="site-nav__logo-tagline">Southern Comfort · Pulaski, VA</span>
+      </div>
+    </a>
+    <ul class="site-nav__links" role="list">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="menu.html" class="active">Menu</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="events.html">Events</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="reservation.html" class="nav-cta">Reserve a Table</a></li>
+    </ul>
+    <div class="site-nav__controls">
+      <button class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode"></button>
+      <button class="mobile-menu-btn" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-menu" role="menu">
+    <a href="index.html">Home</a>
+    <a href="menu.html">Menu</a>
+    <a href="about.html">Our Story</a>
+    <a href="events.html">Events & Specials</a>
+    <a href="blog.html">Blog</a>
+    <a href="contact.html">Contact</a>
+    <a href="reservation.html" class="nav-cta">Reserve a Table</a>
+  </div>
+</nav>
+
+<header class="page-hero">
+  <div class="page-hero__inner container">
+    <p class="label-text" style="color: var(--copper-light); margin-bottom: var(--space-3);">Scratch-Made Daily</p>
+    <h1>Our Full Menu</h1>
+    <p>Everything made in-house from family recipes. Ask your server about today's specials and seasonal additions.</p>
+    <div style="display:flex; gap:var(--space-3); justify-content:center; flex-wrap:wrap;">
+      <a href="reservation.html" class="btn btn--primary">Reserve a Table</a>
+      <a href="contact.html" class="btn btn--ghost">Order Takeout</a>
+    </div>
+  </div>
+</header>
+
+<!-- Menu Tabs -->
+<div class="menu-tabs" role="navigation" aria-label="Menu categories">
+  <div class="menu-tabs__inner">
+    <button class="menu-tab-btn active" data-category="all">All</button>
+    <button class="menu-tab-btn" data-category="starters">Starters</button>
+    <button class="menu-tab-btn" data-category="soups">Soups & Salads</button>
+    <button class="menu-tab-btn" data-category="mains">Mains</button>
+    <button class="menu-tab-btn" data-category="sides">Sides</button>
+    <button class="menu-tab-btn" data-category="burgers">Burgers & Sandwiches</button>
+    <button class="menu-tab-btn" data-category="breakfast">Breakfast</button>
+    <button class="menu-tab-btn" data-category="desserts">Desserts</button>
+    <button class="menu-tab-btn" data-category="drinks">Drinks</button>
+  </div>
+</div>
+
+<main class="menu-page">
+  <div class="container">
+
+    <!-- Allergen Note -->
+    <div class="allergen-note">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      <p><strong>Allergen information:</strong> Many dishes contain gluten, dairy, eggs, shellfish, or nuts. Please inform your server of any allergies or dietary needs before ordering. We are happy to accommodate when possible. Ask about our gluten-free and vegetarian options. <strong>Ask about daily specials</strong> — our kitchen team prepares seasonal items not listed here.</p>
+    </div>
+
+    <!-- STARTERS -->
+    <section class="menu-section" data-category="starters" id="starters">
+      <div class="menu-section__header">
+        <div class="menu-section__icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+        </div>
+        <div>
+          <h2 class="menu-section__title">Starters</h2>
+          <p class="menu-section__sub">Small plates to kick things off right</p>
+        </div>
+      </div>
+      <div class="menu-items-grid">
+        <div class="menu-item-card">
+          <div class="menu-item-card__img">
+            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&auto=format&q=80" alt="Golden fried green tomatoes with dipping sauce" loading="lazy">
+          </div>
+          <div class="menu-item-card__body">
+            <div style="display:flex; justify-content:space-between; align-items:start; gap:var(--space-2);">
+              <h3 class="menu-item-card__name">Fried Green Tomatoes</h3>
+              <span class="menu-item-card__price">$9</span>
+            </div>
+            <p class="menu-item-card__desc">Thick-cut green tomatoes dipped in seasoned cornmeal batter and fried golden. Served with house-made comeback sauce and a drizzle of local honey.</p>
+          </div>
+        </div>
+        <div class="menu-item-card">
+          <div class="menu-item-card__img">
+            <img src="https://images.unsplash.com/photo-1573246123716-6b1782bfc499?w=500&auto=format&q=80" alt="Creamy pimento cheese dip with crackers and crudités" loading="lazy">
+          </div>
+          <div class="menu-item-card__body">
+            <div style="display:flex; justify-content:space-between; align-items:start; gap:var(--space-2);">
+              <h3 class="menu-item-card__name">Pimento Cheese Dip</h3>
+              <span class="menu-item-card__price">$8</span>
+            </div>
+            <p class="menu-item-card__desc">Bobby Ray's grandmother's recipe — sharp cheddar, cream cheese, roasted pimentos, and a hint of jalapeño. Served warm with toasted cornbread crostini and celery sticks.</p>
+          </div>
+        </div>
+        <div class="menu-item-card">
+          <div class="menu-item-card__img">
+            <img src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=500&auto=format&q=80" alt="Golden corn fritters with dipping sauce" loading="lazy">
+          </div>
+          <div class="menu-item-card__body">
+            <div style="display:flex; justify-content:space-between; align-items:start; gap:var(--space-2);">
+              <h3 class="menu-item-card__name">Corn Fritters</h3>
+              <span class="menu-item-card__price">$7</span>
+            </div>
+            <p class="menu-item-card__desc">Crispy on the outside, sweet and tender within. Made with fresh-cut corn off the cob and a touch of smoked paprika. Served with chipotle honey butter.</p>
+          </div>
+        </div>
+      </div>
+      <div class="menu-items-list" style="margin-top:var(--space-4);">
+        <div class="menu-item-row">
+          <div class="menu-item-row__left">
+            <div class="menu-item-row__name">Chicken Biscuit Sliders (3)</div>
+            <div class="menu-item-row__desc">Three mini buttermilk biscuits stacked with crispy fried chicken tenders, house pickles, and honey-sriracha glaze.</div>
+          </div>
+          <span class="menu-item-row__price">$12</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOUPS & SALADS -->
+    <section class="menu-section" data-category="soups" id="soups">
+      <div class="menu-section__header">
+        <div class="menu-section__icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 3l-1 7h16l-1-7"/><path d="M4 10c0 6.627 3.582 10 8 10s8-3.373 8-10"/></svg>
+        </div>
+        <div>
+          <h2 class="menu-section__title">Soups & Salads</h2>
+          <p class="menu-section__sub">Light starts with big Southern character</p>
+        </div>
+      </div>
+      <div class="menu-items-list">
+        <div class="menu-item-row">
+          <div class="menu-item-row__left">
+            <div class="menu-item-row__name">Soup of the Day</div>
+            <div class="menu-item-row__desc">Ask your server. Made fresh each morning with seasonal vegetables from local farms. Cup or bowl available.</div>
+          </div>
+          <span class="menu-item-row__price">$6</span>
+        </div>
+        <div class="menu-item-row">
+          <div class="menu-item-row__left">
+            <div class="menu-item-row__name">She-Crab Soup</div>
+            <div class="menu-item-row__desc">A coastal Virginia classic — rich cream base with blue crab meat, a splash of dry sherry, and fresh chives. Rich, velvety, and deeply satisfying.</div>
+          </div>
+          <span class="menu-item-row__price">$9</span>
+        </div>
+        <div class="menu-item-row">
+          <div class="menu-item-row__left">
+            <div class="menu-item-row__name">House Salad</div>
+            <div class="menu-item-row__desc">Crisp romaine, cherry tomatoes, cucumber, shaved red onion, house-made croutons, and your choice of dressing. Served with cornbread.</div>
+          </div>
+          <span class="menu-item-row__price">$8</span>
+        </div>
+        <div class="menu-item-row">
+          <div class="menu-item-row__left">
+            <div class="menu-item-row__name">Wedge Salad</div>
+            <div class="menu-item-row__desc">Classic iceberg wedge with house-made blue cheese dressing, candied bacon bits, pickled red onion, and cherry tomatoes.</div>
+          </div>
+          <span class="menu-item-row__price">$11</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- MAINS -->
+    <section class="menu-section" data-category="mains" id="mains">
+      <div class="menu-section__header">
+        <div class="menu-section__icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M2.27 21.7s9.87-3.5 12.73-6.36a4.5 4.5 0 0 0-6.36-6.37C5.77 11.84 2.27 21.7 2.27 21.7zM15.42 15.42l6.37-6.37a4.5 4.5 0 0 0-6.37-6.36"/></svg>
+        </div>
+        <div>
+          <h2 class="menu-section__title">Main Plates</h2>
+          <p class="menu-section__sub">Served with your choice of two sides</p>
+        </div>
+      </div>
+      <div class="menu-items-grid">
+        <div class="menu-item-card">
+          <div class="menu-item-card__img">
+            <img src="https://images.unsplash.com/photo-1598515213980-6b1f4b89df68?w=500&auto=format&q=80" alt="Chicken fried steak with cream gravy and mashed potatoes" loading="lazy">
+          </div>
+          <div class="menu-item-card__body">
+            <div style="display:flex; justify-content:space-between; align-items:start; gap:var(--space-2);">
+              <h3 class="menu-item-card__name">Chicken Fried Steak</h3>
+              <span class="menu-item-card__price">$18</span>
+            </div>
+            <p class="menu-item-card__desc">Hand-pounded round steak, seasoned flour dredge, fried to golden perfection. Smothered in Bobby Ray's peppercorn cream gravy. A house legend.</p>
+          </div>
+        </div>
+        <div class="menu-item-card">
+          <div class="menu-item-card__img">
+            <img src="https://images.unsplash.com/photo-1559058789-672da06263d8?w=500&auto=format&q=80" alt="Creamy shrimp and grits" loading="lazy">
+          </div>
+          <div class="menu-item-card__body">
+            <div style="display:flex; justify-content:space-between; align-items:start; gap:var(--space-2);">
+              <h3 class="menu-item-card__name">Shrimp & Grits</h3>
+              <span class="menu-item-card__price">$22</span>
+            </div>
+            <p class="menu-item-card__desc">Gulf shrimp sautéed with tasso ham, roasted corn, and green onions. Served over stone-ground white cheddar grits. A Low Country classic done right.</p>
+          </div>
+        </div>
+        <div class="menu-item-card">
+          <div class="menu-item-card__img">
+            <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=500&auto=format&q=80" alt="Sunday pot roast with vegetables and gravy" loading="lazy">
+          </div>
+          <div class="menu-item-card__body">
+            <div style="display:flex; justify-content:space-between; align-items:start; gap:var(--space-2);">
+              <h3 class="menu-item-card__name">Pot Roast Sunday Special</h3>
+              <span class="menu-item-card__price">$19</span>
+            </div>
+            <p class="menu-item-card__desc">Chuck roast slow-braised for six hours with root vegetables, herbs, and red wine. Fall-apart tender with rich pan jus. Available Sundays only.</p>
+            <span class="badge badge--copper" style="margin-top:var(--space-2);">Sunday Only</span>
+          </div>
+        </div>
+      </div>
+      <div class="menu-items-list" style="margin-top:var(--space-4);">
+        <div class="menu-item-row">
+          <div class="menu-item-row__left">
+            <div class="menu-item-row__name">Smothered Pork Chop</div>
+            <div class="menu-item-row__desc">Thick bone-in chop pan-seared and finished in a rich onion and mushroom gravy with caramelized onions and fresh thyme.</div>
+          </div>
+          <span class="menu-item-row__price">$20</span>
+        </div>
+        <div class="menu-item-row">
+          <div class="menu-item-row__left">
+            <div class="menu-item-row__name">Catfish Platter</div>
+            <div class="menu-item-row__desc">Two whole cornmeal-crusted catfish fillets, fried crisp. Served with hush puppies, coleslaw, and house-made remoulade sauce.</div>
+          </div>
+          <span class="menu-item-row__price">$17</span>
+        </div>
+        <div class="menu-item-row">
+          <div class="menu-item-row__left">
+            <div class="menu-item-row__name">Vegetable Plate (Choose 4)</div>
+            <div class="menu-item-row__desc">Pick any four sides from our daily selection. Served with a half-pan of cornbread. A beloved option for vegetarian diners.</div>
+          </div>
+          <span class="menu-item-row__price">$14</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SIDES -->
+    <section class="menu-section" data-category="sides" id="sides">
+      <div class="menu-section__header">
+        <div class="menu-section__icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 12h8M12 8v8"/></svg>
+        </div>
+        <div>
+          <h2 class="menu-section__title">Sides</h2>
+          <p class="menu-section__sub">Choice of two with every main plate · Additional sides $3 each</p>
+        </div>
+      </div>
+      <div class="sides-grid">
+        <div class="side-item">Mashed Potatoes</div>
+        <div class="side-item">Mac & Cheese</div>
+        <div class="side-item">Collard Greens</div>
+        <div class="side-item">Fried Okra</div>
+        <div class="side-item">Black-Eyed Peas</div>
+        <div class="side-item">Cornbread</div>
+        <div class="side-item">Coleslaw</div>
+        <div class="side-item">Sweet Potato Casserole</div>
+      </div>
+    </section>
+
+    <!-- BURGERS & SANDWICHES -->
+    <section class="menu-section" data-category="burgers" id="burgers">
+      <div class="menu-section__header">
+        <div class="menu-section__icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg>
+        </div>
+        <div>
+          <h2 class="menu-section__title">Burgers & Sandwiches</h2>
+          <p class="menu-section__sub">Served with fries or coleslaw</p>
+        </div>
+      </div>
+      <div class="menu-items-list">
+        <div class="menu-item-row">
+          <div class="menu-item-row__left">
+            <div class="menu-item-row__name">The Skillet Burger</div>
+            <div class="menu-item-row__desc">Half-pound Black Angus patty, pimento cheese, candied bacon, lettuce, tomato, and house Skillet sauce on a toasted brioche bun.</div>
+          </div>
+          <span class="menu-item-row__price">$14</span>
+        </div>
+        <div class="menu-item-row">
+          <div class="menu-item-row__left">
+            <div class="menu-item-row__name">BBQ Pulled Pork</div>
+            <div class="menu-item-row__desc">Slow-smoked pulled pork shoulder on a toasted bun with house-made BBQ sauce, pickled jalapeños, and vinegar slaw.</div>
+          </div>
+          <span class="menu-item-row__price">$13</span>
+        </div>
+        <div class="menu-item-row">
+          <div class="menu-item-row__left">
+            <div class="menu-item-row__name">BLT Club</div>
+            <div class="menu-item-row__desc">Triple-decker toasted white bread, thick-cut bacon, heirloom lettuce, vine-ripened tomato, and garlic aioli. A lunch staple since day one.</div>
+          </div>
+          <span class="menu-item-row__price">$12</span>
+        </div>
+        <div class="menu-item-row">
+          <div class="menu-item-row__left">
+            <div class="menu-item-row__name">Catfish Po'Boy</div>
+            <div class="menu-item-row__desc">Cornmeal-fried catfish on a toasted hoagie roll with shredded lettuce, sliced tomato, and house remoulade. Our take on a New Orleans classic.</div>
+          </div>
+          <span class="menu-item-row__price">$14</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- BREAKFAST -->
+    <section class="menu-section" data-category="breakfast" id="breakfast">
+      <div class="menu-section__header">
+        <div class="menu-section__icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 8h1a4 4 0 0 1 0 8h-1M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/></svg>
+        </div>
+        <div>
+          <h2 class="menu-section__title">Breakfast</h2>
+          <p class="menu-section__sub">Served all day, every day — because good breakfast doesn't have a bedtime</p>
+        </div>
+      </div>
+      <div class="menu-items-grid">
+        <div class="menu-item-card">
+          <div class="menu-item-card__img">
+            <img src="https://images.unsplash.com/photo-1482049016688-2d3e1b311543?w=500&auto=format&q=80" alt="Country breakfast plate with eggs, bacon, and biscuit" loading="lazy">
+          </div>
+          <div class="menu-item-card__body">
+            <div style="display:flex; justify-content:space-between; align-items:start; gap:var(--space-2);">
+              <h3 class="menu-item-card__name">Country Breakfast</h3>
+              <span class="menu-item-card__price">$11</span>
+            </div>
+            <p class="menu-item-card__desc">Two farm eggs (any style), thick-cut bacon or country sausage, hash browns or grits, and two buttermilk biscuits with jam and butter.</p>
+          </div>
+        </div>
+        <div class="menu-item-card">
+          <div class="menu-item-card__img">
+            <img src="https://images.unsplash.com/photo-1584278860047-22db9ff82bed?w=500&auto=format&q=80" alt="Buttermilk biscuits and sausage gravy" loading="lazy">
+          </div>
+          <div class="menu-item-card__body">
+            <div style="display:flex; justify-content:space-between; align-items:start; gap:var(--space-2);">
+              <h3 class="menu-item-card__name">Biscuits & Gravy</h3>
+              <span class="menu-item-card__price">$9</span>
+            </div>
+            <p class="menu-item-card__desc">Two oversized buttermilk biscuits split and covered with thick country sausage gravy. Rich, savory, and exactly what mornings were made for.</p>
+          </div>
+        </div>
+        <div class="menu-item-card">
+          <div class="menu-item-card__img">
+            <img src="https://images.unsplash.com/photo-1528207776546-365bb710ee93?w=500&auto=format&q=80" alt="Fluffy pancake stack with butter and maple syrup" loading="lazy">
+          </div>
+          <div class="menu-item-card__body">
+            <div style="display:flex; justify-content:space-between; align-items:start; gap:var(--space-2);">
+              <h3 class="menu-item-card__name">Pancake Stack</h3>
+              <span class="menu-item-card__price">$10</span>
+            </div>
+            <p class="menu-item-card__desc">Three thick buttermilk pancakes cooked on the griddle until golden. Served with real maple syrup and whipped butter. Add blueberries, pecans, or banana for $2.</p>
+          </div>
+        </div>
+      </div>
+      <div class="menu-items-list" style="margin-top:var(--space-4);">
+        <div class="menu-item-row">
+          <div class="menu-item-row__left">
+            <div class="menu-item-row__name">Egg & Cheese Biscuit</div>
+            <div class="menu-item-row__desc">Fresh-cracked egg scrambled with sharp cheddar on a warm buttermilk biscuit. Add sausage or bacon for $2.</div>
+          </div>
+          <span class="menu-item-row__price">$5</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- DESSERTS -->
+    <section class="menu-section" data-category="desserts" id="desserts">
+      <div class="menu-section__header">
+        <div class="menu-section__icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+        <div>
+          <h2 class="menu-section__title">Desserts</h2>
+          <p class="menu-section__sub">Made fresh in-house — save room</p>
+        </div>
+      </div>
+      <div class="menu-items-list">
+        <div class="menu-item-row">
+          <div class="menu-item-row__left">
+            <div class="menu-item-row__name">Banana Pudding</div>
+            <div class="menu-item-row__desc">Grandmother Nell's original recipe — layers of fresh banana, vanilla wafers, and house-made custard, topped with real whipped cream.</div>
+          </div>
+          <span class="menu-item-row__price">$6</span>
+        </div>
+        <div class="menu-item-row">
+          <div class="menu-item-row__left">
+            <div class="menu-item-row__name">Peach Cobbler</div>
+            <div class="menu-item-row__desc">Fresh Virginia peaches under a buttery biscuit crust, baked until bubbling. Served warm with a scoop of vanilla bean ice cream.</div>
+          </div>
+          <span class="menu-item-row__price">$7</span>
+        </div>
+        <div class="menu-item-row">
+          <div class="menu-item-row__left">
+            <div class="menu-item-row__name">Chocolate Chess Pie</div>
+            <div class="menu-item-row__desc">A Southern classic — rich, dense chocolate filling in a flaky butter crust. Served with whipped cream. Sweet, fudgy, and absolutely satisfying.</div>
+          </div>
+          <span class="menu-item-row__price">$6</span>
+        </div>
+        <div class="menu-item-row">
+          <div class="menu-item-row__left">
+            <div class="menu-item-row__name">Coconut Cake (slice)</div>
+            <div class="menu-item-row__desc">Moist white cake layered with coconut cream and topped with toasted coconut flakes and cream cheese frosting. A Copper Skillet Sunday tradition.</div>
+          </div>
+          <span class="menu-item-row__price">$6</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- DRINKS -->
+    <section class="menu-section" data-category="drinks" id="drinks">
+      <div class="menu-section__header">
+        <div class="menu-section__icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M8 21h8M12 17v4M4.93 4.93A10 10 0 1 0 19.07 4.93"/><path d="M4 2h16l-2.5 4H6.5L4 2z"/></svg>
+        </div>
+        <div>
+          <h2 class="menu-section__title">Drinks</h2>
+          <p class="menu-section__sub">Free refills on all fountain drinks and coffee</p>
+        </div>
+      </div>
+      <div class="menu-items-list">
+        <div class="menu-item-row">
+          <div class="menu-item-row__left">
+            <div class="menu-item-row__name">Sweet Tea</div>
+            <div class="menu-item-row__desc">Properly sweet Southern iced tea brewed fresh every morning. Unsweetened available. Free refills.</div>
+          </div>
+          <span class="menu-item-row__price">$3</span>
+        </div>
+        <div class="menu-item-row">
+          <div class="menu-item-row__left">
+            <div class="menu-item-row__name">Fresh Lemonade</div>
+            <div class="menu-item-row__desc">Squeezed in-house daily. Regular or strawberry. Served over crushed ice.</div>
+          </div>
+          <span class="menu-item-row__price">$3</span>
+        </div>
+        <div class="menu-item-row">
+          <div class="menu-item-row__left">
+            <div class="menu-item-row__name">Coffee</div>
+            <div class="menu-item-row__desc">Rich, smooth house blend from a Roanoke Valley roaster. Regular or decaf. Free refills.</div>
+          </div>
+          <span class="menu-item-row__price">$2.50</span>
+        </div>
+        <div class="menu-item-row">
+          <div class="menu-item-row__left">
+            <div class="menu-item-row__name">Sodas</div>
+            <div class="menu-item-row__desc">Fountain drinks — Coke, Sprite, Dr. Pepper, orange, root beer. Free refills.</div>
+          </div>
+          <span class="menu-item-row__price">$2.50</span>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<!-- CTA Banner -->
+<div class="menu-ctas">
+  <div class="container">
+    <h2>Ready to Taste It?</h2>
+    <p>Reserve your table or call ahead for takeout. We'd love to feed you.</p>
+    <div class="btn-group">
+      <a href="reservation.html" class="btn btn--primary btn--lg">Reserve a Table</a>
+      <a href="contact.html" class="btn btn--ghost btn--lg">Call for Takeout</a>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="site-footer__grid">
+    <div class="footer-brand">
+      <a href="index.html" class="footer-brand__logo">
+        <svg width="36" height="36" viewBox="0 0 44 44" fill="none" aria-hidden="true"><circle cx="22" cy="22" r="20" fill="currentColor" opacity="0.15"/><path d="M12 28 C12 28 14 18 22 18 C30 18 32 28 32 28" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" fill="none"/><path d="M10 28 L34 28" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><path d="M22 18 L22 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><path d="M18 12 L26 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+        <span class="footer-brand__name">The Copper Skillet</span>
+      </a>
+      <p class="footer-brand__desc">Southern comfort food made from scratch in Pulaski, Virginia. Family owned since 2009.</p>
+      <div class="footer-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Family owned since 2009</div>
+    </div>
+    <div class="footer-col"><h4>Navigate</h4><ul role="list"><li><a href="index.html">Home</a></li><li><a href="menu.html">Full Menu</a></li><li><a href="about.html">Our Story</a></li><li><a href="events.html">Events</a></li><li><a href="blog.html">Blog</a></li><li><a href="reservation.html">Reserve</a></li></ul></div>
+    <div class="footer-col"><h4>Hours</h4><div class="footer-hours"><div class="hours-row"><span class="day">Mon – Thu</span><span class="time">7am – 9pm</span></div><div class="hours-row"><span class="day">Fri – Sat</span><span class="time">7am – 10pm</span></div><div class="hours-row"><span class="day">Sunday</span><span class="time">9am – 8pm</span></div></div></div>
+    <div class="footer-col"><h4>Contact</h4><div class="footer-contact-info"><a href="tel:+15405550421"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.29h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.4a16 16 0 0 0 5.58 5.58l.97-.97a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/></svg>(540) 555-0421</a><p><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>75 Washington Ave<br>Pulaski, VA 24301</p></div></div>
+  </div>
+  <div class="footer-bottom"><p>&copy; 2024 The Copper Skillet · <a href="https://designholistically.com" target="_blank" rel="noopener">Design Holistically</a></p><div class="footer-bottom__links"><a href="#">Privacy</a><a href="admin.html">Admin</a></div></div>
+</footer>
+
+<script src="js/main.js" defer></script>
+</body>
+</html>
